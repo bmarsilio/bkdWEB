@@ -1,0 +1,23 @@
+{
+	"name": "son/mvc",
+	"require": {
+		"php": ">=5.3"
+	},
+
+	"minimum-stability": "alpha",
+	"authors": [
+		{
+			"name": "Bruno Marsilio",
+			"email": "bruno.marsilio@hotmail.com"
+		}
+	],
+	"autoload": {
+		"psr-0": {
+			"SON": "vendor",
+			"App": "/"
+		}
+	},
+	"config": {
+		"bin-dir": "bin"
+	}
+}

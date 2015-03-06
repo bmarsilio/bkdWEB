@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="com.zend.php.productivity:12.0.0.v20141115-2331"/>
+		<item value="io.emmet.eclipse:1.0.0.201401132323"/>
+		<item value="org.eclipse.datatools.connectivity.feature:1.12.0.v201406061321-7C7n9DEsxcwtN5odeWrQrgwYHq8"/>
+		<item value="org.eclipse.datatools.connectivity.oda.feature:1.12.0.v201406061321-7E7C7YBgJ9ET9OHLDfLZ"/>
+		<item value="org.eclipse.datatools.doc.user:1.12.0.v201405281819-47C18w95FHAM87EJJD7"/>
+		<item value="org.eclipse.datatools.enablement.mysql.feature:1.12.0.v201406061321-5478AkF7AK8X9JCREG"/>
+		<item value="org.eclipse.datatools.enablement.postgresql.feature:1.12.0.v201406061321-553AkF7AK8PCRBQBP"/>
+		<item value="org.eclipse.datatools.modelbase.feature:1.12.0.v201406061321-7707GCcNBHLDaKTEcRi"/>
+		<item value="org.eclipse.datatools.sqldevtools.ddlgen.feature:1.12.0.v201406061321-7A-7DF7RZHQUMdThK5_t"/>
+		<item value="org.eclipse.datatools.sqldevtools.feature:1.12.0.v201406061321-7N8P7IFDri6qjCyg6Q61VhVsihvO"/>
+		<item value="org.eclipse.datatools.sqldevtools.parsers.feature:1.12.0.v201406061321-623BgJ9EE9ZJRDZLA"/>
+		<item value="org.eclipse.dltk.core.index:5.0.0.201403041902"/>
+		<item value="org.eclipse.dltk.core:5.0.0.201403041902"/>
+		<item value="org.eclipse.dltk.mylyn:5.0.0.201403041902"/>
+		<item value="org.eclipse.draw2d:3.9.101.201408150207"/>
+		<item value="org.eclipse.egit.mylyn:3.5.1.201411031338"/>
+		<item value="org.eclipse.egit:3.5.1.201411031338"/>
+		<item value="org.eclipse.emf.codegen.ecore.ui:2.10.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.codegen.ecore:2.10.1.v20140901-1055"/>
+		<item value="org.eclipse.emf.codegen.ui:2.8.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.codegen:2.10.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.common.ui:2.9.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.common:2.10.1.v20140901-1043"/>
+		<item value="org.eclipse.emf.converter:2.10.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.databinding.edit:1.4.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.databinding:1.4.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.ecore.edit:2.9.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.ecore.editor:2.10.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.ecore:2.10.1.v20140901-1043"/>
+		<item value="org.eclipse.emf.edit.ui:2.10.1.v20140901-1055"/>
+		<item value="org.eclipse.emf.edit:2.10.1.v20140901-1055"/>
+		<item value="org.eclipse.emf.mapping.ecore.editor:2.9.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.mapping.ecore:2.8.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.mapping.ui:2.8.0.v20140901-1055"/>
+		<item value="org.eclipse.emf.mapping:2.8.0.v20140901-1055"/>
+		<item value="org.eclipse.emf:2.10.1.v20140901-1055"/>
+		<item value="org.eclipse.gef:3.9.101.201408150207"/>
+		<item value="org.eclipse.help:2.0.102.v20140925-0400"/>
+		<item value="org.eclipse.jgit:3.5.1.201411031324"/>
+		<item value="org.eclipse.mylyn.commons.identity:1.5.0.v20140702-2248"/>
+		<item value="org.eclipse.mylyn.commons.notifications:1.5.0.v20140702-2248"/>
+		<item value="org.eclipse.mylyn.commons.repositories:1.5.0.v20140905-0008"/>
+		<item value="org.eclipse.mylyn.commons:3.13.0.v20140704-2323"/>
+		<item value="org.eclipse.mylyn.context_feature:3.13.0.v20140819-2236"/>
+		<item value="org.eclipse.mylyn.discovery:3.13.0.v20140820-1854"/>
+		<item value="org.eclipse.mylyn.monitor:3.13.0.v20140702-2155"/>
+		<item value="org.eclipse.mylyn.team_feature:3.13.0.v20140702-2225"/>
+		<item value="org.eclipse.mylyn.wikitext_feature:2.2.0.v20140905-1515"/>
+		<item value="org.eclipse.mylyn_feature:3.13.0.v20140826-1734"/>
+		<item value="org.eclipse.platform:4.4.0.v20140925-0400"/>
+		<item value="org.eclipse.rcp:4.4.0.v20140925-0400"/>
+		<item value="org.eclipse.rse.core:3.4.100.201406091451"/>
+		<item value="org.eclipse.rse.ftp:3.2.0.201406020016"/>
+		<item value="org.eclipse.rse.ssh:3.0.500.201406020016"/>
+		<item value="org.eclipse.wst.common.fproj:3.6.1.v201409111446"/>
+		<item value="org.eclipse.wst.jsdt.feature:1.6.100.v201410221502"/>
+		<item value="org.eclipse.wst.web_ui.feature:3.6.1.v201410301409"/>
+		<item value="org.eclipse.wst.xml_ui.feature:3.6.1.v201409111852"/>
+		<item value="org.eclipse.xsd.edit:2.8.0.v20140901-1055"/>
+		<item value="org.eclipse.xsd:2.10.0.v20140901-1055"/>
+		<item value="org.jkiss.dbeaver.core:3.0.2"/>
+		<item value="org.jkiss.dbeaver.ext.generic:2.0.2"/>
+		<item value="org.jkiss.dbeaver.resources.postgresql:9.1.901"/>
+		<item value="org.jkiss.dbeaver.runtime:3.0.2"/>
+	</list>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="205" key="DIALOG_Y_ORIGIN"/>
+		<item value="381" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+</section>

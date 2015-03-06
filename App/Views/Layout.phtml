@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Altmer Web</title>
+
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="lib/sweetalert-master/lib/sweet-alert.css">
+		<link rel="stylesheet" type="text/css" href="lib/datepicker/css/datepicker3.css">
+		<link rel="stylesheet" type="text/css" href="lib/dataTable/css/bootstrap-data-table.css">
+
+		<script src="lib/bootstrap/js/jQuery.js"></script>
+		<script src="lib/bootstrap/js/bootstrap.js"></script>
+		<script src="lib/sweetalert-master/lib/sweet-alert.min.js"></script>
+		<script src="lib/mask/js/jquery.maskedinput.js"></script>
+		<script type="text/javascript" src="lib/datepicker/js/bootstrap-datepicker.js"></script>
+		<script type="text/javascript" src="lib/datepicker/js/locales/bootstrap-datepicker.pt-BR.js" charset="UTF-8"></script>
+		<script src="lib/dataTable/js/jquery.dataTables.min.js"></script>
+		<script src="lib/dataTable/js/dataTables.bootstrap.js"></script>
+		
+		<?php require_once('topo.phtml'); ?>
+	</head>
+
+	<body>
+		<div class="container">
+			<?php 
+				echo $this->content();
+			?>
+		</div>
+
+	</body>
+
+</html>
