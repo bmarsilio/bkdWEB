@@ -31,7 +31,13 @@ class Init extends Bootstrap
                 $ar['pagina'] = array( 
                     'route' => '/pagina',
                     'controller' => 'Pagina',
-                    'action' => 'index'
+                    'action' => 'cadpagina'
+                );
+                
+                $ar['jornaiseditais'] = array(
+                    'route' => '/jornaiseditais',
+                    'controller' => 'Pagina',
+                    'action' => 'cadjornaiseditais'
                 );
 		#baixar lancamentos
 			

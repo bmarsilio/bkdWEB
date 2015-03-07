@@ -1,0 +1,118 @@
+<form class="form-horizontal">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Cadastro de Jornais | Editais</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">ID</label>  
+            <div class="col-md-4">
+                <input id="pagina-id" name="pagina[id]"  class="form-control input-md" type="text">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Descrição:</label>  
+            <div class="col-md-4">
+                <input id="pagina-descricao" name="pagina[descricao]"  class="form-control input-md" type="text">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Link:</label>  
+            <div class="col-md-4">
+                <input id="pagina-link" name="pagina[link]"  class="form-control input-md" type="text">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Refresh:</label>  
+            <div class="col-md-4">
+                <input id="pagina-refresh" name="pagina[reload]"  class="form-control input-md" type="text">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Busca:</label>  
+            <div class="col-md-4">
+                <input id="pagina-busca" name="pagina[busca]"  class="form-control input-md" type="text">
+
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for=""></label>
+            <div class="col-md-4">
+                <button id="" name="" class="btn btn-success pull-right ">Salvar</button>
+            </div>
+        </div>
+
+        <!-- Hiddens -->    
+        <input type="hidden" name="tipopagina" value="JE" />
+    </fieldset>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Link</th>
+            <th>Refresh</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Jornal 1</td>
+            <td>www.jornal.com.br</td>
+            <td>10</td>
+            <td colspan="2" >
+                <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
+                <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Edital 1</td>
+            <td>www.edital.com.br</td>
+            <td>10</td>
+            <td colspan="2" >
+                <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
+                <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Jornal 2</td>
+            <td>www.jornal.com.br</td>
+            <td>10</td>
+            <td colspan="2" >
+                <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
+                <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Edital 2</td>
+            <td>www.edital.com.br</td>
+            <td>10</td>
+            <td colspan="2" >
+                <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
+                <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
+            </td>
+        </tr>
+    </tbody>
+    
+</table>

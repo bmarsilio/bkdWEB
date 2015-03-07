@@ -8,10 +8,16 @@ use SON\Di\Container;
 class Pagina extends Action
 {
 
-	public function index()
+	public function cadpagina()
 	{
 		
-		$this->render('index');
+		$this->render('cadpagina');
+	}
+        
+        public function cadjornaiseditais()
+	{
+		
+		$this->render('cadjornaiseditais');
 	}
 
 
