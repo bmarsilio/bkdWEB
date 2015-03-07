@@ -1,0 +1,60 @@
+CREATE DATABASE bkdwebdev
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Portuguese_Brazil.1252'
+       LC_CTYPE = 'Portuguese_Brazil.1252'
+       CONNECTION LIMIT = -1;
+
+
+CREATE TABLE usuario
+(
+  usuarioid bigserial NOT NULL,
+  nome character varying,
+  login character varying,
+  senha character varying DEFAULT '123456'::character varying,
+  ativo boolean DEFAULT true,
+  CONSTRAINT usuario_pkey PRIMARY KEY (usuarioid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuario
+  OWNER TO postgres;
+
+
+CREATE TABLE pagina
+(
+  paginaid bigserial NOT NULL,
+  descricao character varying NOT NULL,
+  link character varying NOT NULL,
+  reload character varying NOT NULL,
+  busca character varying,
+  htmlatual text,
+  CONSTRAINT pagina_pkey PRIMARY KEY (paginaid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE pagina
+  OWNER TO postgres;
+
+
+CREATE TABLE notificacao
+(
+  notificacaoid bigserial NOT NULL,
+  paginaid bigint,
+  datanotificacao date NOT NULL DEFAULT ('now'::text)::date,
+  hora time without time zone NOT NULL DEFAULT ('now'::text)::time with time zone,
+  dtclick date,
+  palavraencontrada character varying,
+  CONSTRAINT notificacao_pkey PRIMARY KEY (notificacaoid),
+  CONSTRAINT notificacao_paginaid_fkey FOREIGN KEY (paginaid)
+      REFERENCES pagina (paginaid) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE notificacao
+  OWNER TO postgres;
