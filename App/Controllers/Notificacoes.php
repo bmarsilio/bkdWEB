@@ -8,11 +8,14 @@ use SON\Di\Container;
 class Notificacoes extends Action
 {
 
-	public function index()
-	{
-		
-		$this->render('index');
+	public function pagina()
+	{           
+            $this->render('paginas');
 	}
+        
+        public function jornalEdital(){
+            $this->render('jornaisEditais');
+        }
 
 
 }

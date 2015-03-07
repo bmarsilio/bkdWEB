@@ -11,10 +11,15 @@ class Init extends Bootstrap
 	{
 		# menus principais
 		$ar['home'] = array('route'=>'/','controller'=>'index','action'=>'index');
-                $ar['notificacoes'] = array(
-                    'route' => '/notificacoes',
+                $ar['notificacoes-paginas'] = array(
+                    'route' => '/notificacoes-paginas',
                     'controller' => 'notificacoes',
-                    'action' => 'index'
+                    'action' => 'pagina'
+                );
+                $ar['notificacoes-jornaiseditais'] = array(
+                    'route' => '/notificacoes-jornais-editais',
+                    'controller' => 'notificacoes',
+                    'action' => 'jornaledital'
                 );
 
 		# funcionalidades de login e logout
