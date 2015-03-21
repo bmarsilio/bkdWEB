@@ -58,3 +58,50 @@ WITH (
 );
 ALTER TABLE notificacao
   OWNER TO postgres;
+
+
+-------------------------------------------------------------------------------------------
+adicao da tabela tipoUsuario e adicao do campo tipoUsuarioId na tabela cliente
+
+-- Table: usuario
+
+-- DROP TABLE usuario;
+
+CREATE TABLE usuario
+(
+  usuarioid bigserial NOT NULL,
+  nome character varying,
+  login character varying,
+  senha character varying DEFAULT '123456'::character varying,
+  ativo boolean DEFAULT true,
+  tipousuarioid bigserial NOT NULL,
+  CONSTRAINT usuario_pkey PRIMARY KEY (usuarioid),
+  CONSTRAINT usuario_tipousuarioid_fkey FOREIGN KEY (tipousuarioid)
+      REFERENCES tipousuario (tipousuarioid) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuario
+  OWNER TO postgres;
+
+
+-- Table: tipousuario
+
+-- DROP TABLE tipousuario;
+
+CREATE TABLE tipousuario
+(
+  tipousuarioid bigserial NOT NULL,
+  descricao character varying,
+  CONSTRAINT tipousuario_pkey PRIMARY KEY (tipousuarioid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE tipousuario
+  OWNER TO postgres;
+
+
+-------------------------------------------------------------------------------------------
