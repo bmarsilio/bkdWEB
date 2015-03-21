@@ -8,7 +8,7 @@ class Container
 	{
 		$str_class = "\\App\\Models\\".ucfirst($name);
 
-		$class = new $str_class(\App\Init::getDb());
+		$class = new $str_class(\App\business::getDb());
 
 		return $class;
 	}

@@ -44,13 +44,5 @@ class Init extends Bootstrap
 		$this->setRoutes($ar);
 	}
 
-	public static function getDb()
-	{
-
-		$db = new \PDO("pgsql:host=localhost;dbname=bkdwebdev","postgres","123456");
-
-		return $db;
-	}
-
 }
 
