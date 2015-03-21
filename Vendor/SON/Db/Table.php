@@ -32,19 +32,27 @@ abstract class Table
 
 	public function autentica($dados)
 	{
+		$senha = md5($dados[senha]);
 		$sql = "
 				SELECT 
-					usuarioId,
-					nome,
-					ativo,
-					login 
+					A.usuarioId,
+					A.nome,
+					A.ativo,
+					A.login,
+					B.descricao as tipoUsuario,
+					B.tipoUsuarioId as tipoUsuarioId
 				FROM 
-					{$this->table} 
+					{$this->table} A
+					inner join tipoUsuario B on (B.tipoUsuarioId = A.tipoUsuarioId)
 				WHERE
-					login = '$dados[usuario]'
-					AND senha = '$dados[senha]'
-					AND ativo = '1'
+					A.login = '$dados[usuario]'
+					AND A.senha = '$senha'
+					AND A.ativo = '1'
 		";
+		/*
+		print("<pre>".$sql."</pre>");
+		die();
+		*/
 		$consulta = $this->db->prepare($sql);
 		$consulta->execute();
 

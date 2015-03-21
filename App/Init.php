@@ -40,7 +40,10 @@ class Init extends Bootstrap
                     'action' => 'cadjornaiseditais'
                 );
 		#baixar lancamentos
-			
+		
+		#relatorio
+        $ar['relatorio'] = array('route'=>'/relatorio','controller'=>'relatorio','action'=>'index');
+        
 		$this->setRoutes($ar);
 	}
 

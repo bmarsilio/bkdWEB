@@ -1,3 +1,4 @@
+<?php //var_dump($_SESSION); ?>
 <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container-fluid">
 
@@ -26,6 +27,14 @@
                 </li>
                 <li><a href="/notificacoes-paginas">Notificações Páginas <span class="badge" >4</span></a></li>
                 <li><a href="/notificacoes-jornais-editais">Notificações Jornais | Editais <span class="badge" >4</span></a></li>
+                <?php
+                	//valida se o usuario que esta logado e do tipo administrador(1) para mostrar o menu de relatorios
+                	if($_SESSION[tipoUsuarioId] == 1){
+                ?>
+                		<li><a href="/relatorio"><span class="glyphicon glyphicon-list-alt"></span> Relatórios</a></li>
+                <?php
+                	}//endIf
+                ?>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
