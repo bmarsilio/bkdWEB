@@ -33,6 +33,11 @@ class Init extends Bootstrap
                     'controller' => 'Pagina',
                     'action' => 'cadpagina'
                 );
+                $ar['pagina-add'] = array( 
+                    'route' => '/pagina/add',
+                    'controller' => 'Pagina',
+                    'action' => 'add'
+                );
                 
                 $ar['jornaiseditais'] = array(
                     'route' => '/jornaiseditais',
@@ -42,7 +47,7 @@ class Init extends Bootstrap
 		#baixar lancamentos
 		
 		#relatorio
-        $ar['relatorio'] = array('route'=>'/relatorio','controller'=>'relatorio','action'=>'index');
+                $ar['relatorio'] = array('route'=>'/relatorio','controller'=>'relatorio','action'=>'index');
         
 		$this->setRoutes($ar);
 	}

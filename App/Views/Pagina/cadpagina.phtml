@@ -1,4 +1,9 @@
-<form class="form-horizontal">
+<pre>
+<?php
+var_dump($this->paginas);
+?>
+</pre>
+<form class="form-horizontal" action="/pagina/add" method="post" >
     <fieldset>
 
         <!-- Form Name -->
@@ -8,7 +13,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">ID</label>  
             <div class="col-md-4">
-                <input id="pagina-id" name="pagina[id]"  class="form-control input-md" type="text">
+                <input readonly="" id="pagina-id" name="pagina[paginaid]"  class="form-control input-md" type="text">
 
             </div>
         </div>
@@ -32,14 +37,14 @@
         </div>
 
         <!-- Text input-->
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Refresh:</label>  
             <div class="col-md-4">
                 <input id="pagina-refresh" name="pagina[reload]"  class="form-control input-md" type="text">
 
             </div>
         </div>
-
+        -->
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Busca:</label>  
@@ -69,16 +74,25 @@
             <th>ID</th>
             <th>Descrição</th>
             <th>Link</th>
-            <th>Refresh</th>
+            <!--<th>Refresh</th>-->
             <th>Ações</th>
         </tr>
     </thead>
     <tbody>
+        <?php foreach($this->paginas as $pagina): ?>
         <tr>
+            <td><?php echo $pagina->getPaginaId(); ?></td>
+            <td><?php echo $pagina->getDescricao(); ?></td>
+            <td><?php echo $pagina->getLink(); ?></td>
+            <td colspan="2">
+                <a class="btn btn-default btn-lg" href="/pagina?paginaId=<?php echo $pagina->getPaginaId(); ?>" ><span class="glyphicon glyphicon-pencil" ></span></a>
+            </td>
+        </tr>
+        <?php endforeach ?>
+        <!--<tr>
             <td>1</td>
             <td>Site 1</td>
             <td>www.teste.com.br</td>
-            <td>10</td>
             <td colspan="2" >
                 <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
                 <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
@@ -88,7 +102,6 @@
             <td>1</td>
             <td>Site 1</td>
             <td>www.teste.com.br</td>
-            <td>10</td>
             <td colspan="2" >
                 <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
                 <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
@@ -98,7 +111,6 @@
             <td>1</td>
             <td>Site 1</td>
             <td>www.teste.com.br</td>
-            <td>10</td>
             <td colspan="2" >
                 <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
                 <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
@@ -108,12 +120,11 @@
             <td>1</td>
             <td>Site 1</td>
             <td>www.teste.com.br</td>
-            <td>10</td>
             <td colspan="2" >
                 <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
                 <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
             </td>
-        </tr>
+        </tr>-->
     </tbody>
     
 </table>

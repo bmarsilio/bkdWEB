@@ -11,10 +11,10 @@ curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 $conteudo = curl_exec ($ch);
 curl_close($ch);
 
- //preg_match_all('(Example)', $conteudo, $conteudo2);
-$conteudo2 = str_replace('Notícias', '<div class="alert alert-success" role="alert">Notícias</div>', strip_tags($conteudo));
+preg_match_all('(Example)', $conteudo, $conteudo2);
+$conteudo2 = str_replace('Example', '<div class="alert alert-success" role="alert">Example</div>', strip_tags($conteudo));
 
-/*echo '<pre>';
+echo '<pre>';
 var_dump($conteudo2);
 echo '</pre>';
 */

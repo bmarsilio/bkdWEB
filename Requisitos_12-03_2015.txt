@@ -1,0 +1,3 @@
+Controle de usuário - perfis
+Não pode ter dois logins para o mesmo usuário ao mesmo tempo logado
+Administrador poderá ver relatórios e cadastrar usuários além das demais funcionalidades
