@@ -42,6 +42,10 @@ class Pagina extends Action
             $pagina = Container::getClass("Pagina");
             $pagina->insert($_POST['pagina']);
             
+            if(!$_POST['pagina']['ativo']){
+                $_POST['pagina']['ativo'] = 'f';
+            }
+            
             if($_POST['pagina']['tipo'] == 'P'){
                 header("Location: /pagina");
             }else{
@@ -56,6 +60,10 @@ class Pagina extends Action
             $_POST['pagina']['id'] = $_POST['pagina']['paginaid'];
             
             unset($_POST['pagina']['paginaid']);
+            
+            if(!$_POST['pagina']['ativo']){
+                $_POST['pagina']['ativo'] = 'f';
+            }
             
             $pagina = Container::getClass('Pagina');
             $pagina->update($_POST['pagina']);

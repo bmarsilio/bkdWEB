@@ -72,7 +72,7 @@ class Pagina extends Table
                 
         function listarPaginas(){
 
-            $sql = "SELECT * FROM pagina WHERE tipo = 'P' ORDER BY paginaId";
+            $sql = "SELECT * FROM pagina WHERE tipo = 'P' ORDER BY ativo DESC, paginaId";
 
             return $this->db->query($sql);
             
@@ -80,7 +80,7 @@ class Pagina extends Table
         
         function listarJornaisEditais(){
 
-            $sql = "SELECT * FROM pagina WHERE tipo = 'JE' ORDER BY paginaId";
+            $sql = "SELECT * FROM pagina WHERE tipo = 'JE' ORDER BY ativo DESC ,paginaId";
 
             return $this->db->query($sql);
             
