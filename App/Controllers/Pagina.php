@@ -11,7 +11,16 @@ class Pagina extends Action
 	public function cadpagina()
 	{
             $pagina = Container::getClass('Pagina');
-            $this->paginas = $pagina->listarPaginas();
+            $this->view->paginas = $pagina->listarPaginas();
+            
+            if($_GET['update'] == 'true'){
+                
+            }
+            
+            if($_GET['paginaId']){
+                $paginaSelecionada = $pagina->buscarPorId($_GET['paginaId']);
+                $this->view->pagina = $paginaSelecionada;
+            }
             
             $this->render('cadpagina');
 	}

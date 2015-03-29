@@ -39,6 +39,12 @@ class Init extends Bootstrap
                     'action' => 'add'
                 );
                 
+                $ar['pagina-edit'] = array( 
+                    'route' => '/pagina/edit',
+                    'controller' => 'Pagina',
+                    'action' => 'edit'
+                );
+                
                 $ar['jornaiseditais'] = array(
                     'route' => '/jornaiseditais',
                     'controller' => 'Pagina',

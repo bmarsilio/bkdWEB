@@ -60,13 +60,16 @@ class Pagina extends Table
         }
 
         function listarPaginas(){
-            $sql = "
-                SELECT * FROM pagina ORDER BY paginaId
-                ";
-            $consulta = $this->db->prepare($sql);
-            $consulta->execute();
 
-            return $consulta->fetch(1);
+        $sql = "SELECT * FROM pagina ORDER BY paginaId";
+
+	return $this->db->query($sql);
+            
+        }
+        
+        function buscarPorId($paginaId){
+            $sql = "SELECT * FROM pagina where paginaId = $paginaId";
+            return $this->db->query($sql)->fetch(\PDO::FETCH_ASSOC);
         }
 
 }

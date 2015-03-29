@@ -29,38 +29,40 @@ abstract class Table
 
 		return $res;
 	}
-
+        
         public function insert(array $data)
         {
             $keysData = array_keys($data);
-            $params = implode($keysData,",:");
             $keysData = implode($keysData,',');
             
-            $stmt = $this->db->prepare("INSERT INTO {$this->table} ({$keysData}) VALUES(:{$params}) ");
+            $values = implode("','", $data);
             
-            foreach($data as $key => $a){
-                $stmt->bindParam(":$key", $a);
-                echo('<pre>');
-                var_dump(":$key => $a");
-                echo('</pre>');
-            }
-            die;
-            //$stmt->execute();
+            $stmt = $this->db->prepare("INSERT INTO {$this->table} ({$keysData}) VALUES('{$values}') ");
+            
+            $stmt->execute();
             
         }
         
         public function update(array $data)
         {
+            
+            
+            $where = "{$data['id_key']}={$data['id']}";
+            unset($data['id_key']);
+            unset($data['id']);
+            
             foreach($data as $key => $a){
-                $set .= "$key = :$key";
+                
+                $set .= " $key = '$a', ";
+                
             }            
             
-            $stmt = $this->db->prepare("UPDATE {$this->table} SET $set WHERE {$data['id_key']}={$data['id']}");
+            $set = substr($set, 0, strlen($set) - 2);
             
-            foreach($data as $key => $a){
-                $stmt->bindParam(":$key", $a);
-            }
+            $sql = "UPDATE {$this->table} SET $set WHERE $where";
             
+            
+            $stmt = $this->db->prepare($sql);
             $stmt->execute();
             
         }
