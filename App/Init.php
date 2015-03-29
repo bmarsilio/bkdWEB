@@ -28,6 +28,8 @@ class Init extends Bootstrap
 		$ar['logout'] = array('route'=>'/logout','controller'=>'logout','action'=>'index');
 
 		#cadastros
+                
+                #Paginas
                 $ar['pagina'] = array( 
                     'route' => '/pagina',
                     'controller' => 'Pagina',
@@ -45,12 +47,25 @@ class Init extends Bootstrap
                     'action' => 'edit'
                 );
                 
+                
+                #Jornais Editais
                 $ar['jornaiseditais'] = array(
                     'route' => '/jornaiseditais',
                     'controller' => 'Pagina',
                     'action' => 'cadjornaiseditais'
                 );
-		#baixar lancamentos
+		
+                $ar['jornaiseditais-add'] = array( 
+                    'route' => '/jornaiseditais/add',
+                    'controller' => 'Pagina',
+                    'action' => 'add'
+                );
+                
+                $ar['jornaiseditais-edit'] = array( 
+                    'route' => '/jornaiseditais/edit',
+                    'controller' => 'Pagina',
+                    'action' => 'edit'
+                );
 		
 		#relatorio
                 $ar['relatorio'] = array('route'=>'/relatorio','controller'=>'relatorio','action'=>'index');

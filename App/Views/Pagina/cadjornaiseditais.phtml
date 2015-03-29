@@ -1,14 +1,20 @@
-<form class="form-horizontal">
+<?php if($_GET['paginaId']): ?>
+<form class="form-horizontal" action="/jornaiseditais/edit" method="post" >
+<?php else: ?>
+<form class="form-horizontal" action="/jornaiseditais/add" method="post" >
+<?php endif ?>
     <fieldset>
 
         <!-- Form Name -->
         <legend>Cadastro de Jornais | Editais</legend>
 
+        <a class="btn btn-default" href="/jornaiseditais" title="Novo" ><span class="glyphicon glyphicon-file" ></span></a>
+        
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">ID</label>  
             <div class="col-md-4">
-                <input id="pagina-id" name="pagina[id]"  class="form-control input-md" type="text">
+                <input readonly="" id="pagina-id" value="<?php echo $this->view->pagina['paginaid']; ?>" name="pagina[paginaid]"  class="form-control input-md" type="text">
 
             </div>
         </div>
@@ -17,7 +23,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Descrição:</label>  
             <div class="col-md-4">
-                <input id="pagina-descricao" name="pagina[descricao]"  class="form-control input-md" type="text">
+                <input id="pagina-descricao" name="pagina[descricao]" value="<?php echo $this->view->pagina['descricao']; ?>"  class="form-control input-md" type="text">
 
             </div>
         </div>
@@ -26,7 +32,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Link:</label>  
             <div class="col-md-4">
-                <input id="pagina-link" name="pagina[link]"  class="form-control input-md" type="text">
+                <input id="pagina-link" name="pagina[link]" value="<?php echo $this->view->pagina['link']; ?>"  class="form-control input-md" type="text">
 
             </div>
         </div>
@@ -44,7 +50,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Busca:</label>  
             <div class="col-md-4">
-                <input id="pagina-busca" name="pagina[busca]"  class="form-control input-md" type="text">
+                <input id="pagina-busca" name="pagina[busca]" value="<?php echo $this->view->pagina['busca']; ?>"  class="form-control input-md" type="text">
 
             </div>
         </div>
@@ -58,7 +64,9 @@
         </div>
 
         <!-- Hiddens -->    
-        <input type="hidden" name="tipopagina" value="JE" />
+        <input type="hidden" name="pagina[tipo]" value="JE" />
+        
+        
     </fieldset>
 </form>
 
@@ -73,10 +81,23 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <?php 
+        if(!empty($this->view->paginas))
+            foreach($this->view->paginas as $key => $pagina): 
+            ?>
+            <tr>
+                <td><?php echo $pagina['paginaid']; ?></td>
+                <td><?php echo $pagina['descricao']; ?></td>
+                <td><?php echo $pagina['link']; ?></td>
+                <td colspan="2">
+                    <a class="btn btn-default btn-lg" href="/jornaiseditais?paginaId=<?php echo $pagina['paginaid']; ?>" ><span class="glyphicon glyphicon-pencil" ></span></a>
+                </td>
+            </tr>
+            <?php endforeach ?>
+        <!--<tr>
             <td>1</td>
-            <td>Jornal 1</td>
-            <td>www.jornal.com.br</td>
+            <td>Site 1</td>
+            <td>www.teste.com.br</td>
             <td colspan="2" >
                 <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
                 <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
@@ -84,8 +105,8 @@
         </tr>
         <tr>
             <td>1</td>
-            <td>Edital 1</td>
-            <td>www.edital.com.br</td>
+            <td>Site 1</td>
+            <td>www.teste.com.br</td>
             <td colspan="2" >
                 <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
                 <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
@@ -93,8 +114,8 @@
         </tr>
         <tr>
             <td>1</td>
-            <td>Jornal 2</td>
-            <td>www.jornal.com.br</td>
+            <td>Site 1</td>
+            <td>www.teste.com.br</td>
             <td colspan="2" >
                 <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
                 <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
@@ -102,13 +123,13 @@
         </tr>
         <tr>
             <td>1</td>
-            <td>Edital 2</td>
-            <td>www.edital.com.br</td>
+            <td>Site 1</td>
+            <td>www.teste.com.br</td>
             <td colspan="2" >
                 <button class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-pencil" ></span></button>
                 <button class="btn btn-danger btn-lg " ><span class="glyphicon glyphicon-remove" ></span></button>
             </td>
-        </tr>
+        </tr>-->
     </tbody>
     
 </table>

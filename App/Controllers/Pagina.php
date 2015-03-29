@@ -13,10 +13,6 @@ class Pagina extends Action
             $pagina = Container::getClass('Pagina');
             $this->view->paginas = $pagina->listarPaginas();
             
-            if($_GET['update'] == 'true'){
-                
-            }
-            
             if($_GET['paginaId']){
                 $paginaSelecionada = $pagina->buscarPorId($_GET['paginaId']);
                 $this->view->pagina = $paginaSelecionada;
@@ -28,8 +24,15 @@ class Pagina extends Action
         
         public function cadjornaiseditais()
 	{
+            $pagina = Container::getClass('Pagina');
+            $this->view->paginas = $pagina->listarJornaisEditais();
+            
+            if($_GET['paginaId']){
+                $paginaSelecionada = $pagina->buscarPorId($_GET['paginaId']);
+                $this->view->pagina = $paginaSelecionada;
+            }
 		
-		$this->render('cadjornaiseditais');
+            $this->render('cadjornaiseditais');
 	}
         
         public function add()
@@ -39,7 +42,12 @@ class Pagina extends Action
             $pagina = Container::getClass("Pagina");
             $pagina->insert($_POST['pagina']);
             
-            header("Location: /pagina");
+            if($_POST['pagina']['tipo'] == 'P'){
+                header("Location: /pagina");
+            }else{
+                header("Location: /jornaiseditais");
+            }
+            
         }
         
         public function edit()
@@ -52,7 +60,11 @@ class Pagina extends Action
             $pagina = Container::getClass('Pagina');
             $pagina->update($_POST['pagina']);
             
-            header("Location: /pagina");
+            if($_POST['pagina']['tipo'] == 'P'){
+                header("Location: /pagina");
+            }else{
+                header("Location: /jornaiseditais");
+            }
         }
 
 

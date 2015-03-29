@@ -13,6 +13,7 @@ class Pagina extends Table
         private $link;
         private $busca;
         private $htmlAtual;
+        private $tipo;
         
         function getPaginaId() {
             return $this->paginaId;
@@ -58,12 +59,30 @@ class Pagina extends Table
             $this->htmlAtual = $htmlAtual;
             return $this;
         }
+        
+        function getTipo() {
+            return $this->tipo;
+        }
 
+        function setTipo($tipo) {
+            $this->tipo = $tipo;
+            return $this;
+        }
+
+                
         function listarPaginas(){
 
-        $sql = "SELECT * FROM pagina ORDER BY paginaId";
+            $sql = "SELECT * FROM pagina WHERE tipo = 'P' ORDER BY paginaId";
 
-	return $this->db->query($sql);
+            return $this->db->query($sql);
+            
+        }
+        
+        function listarJornaisEditais(){
+
+            $sql = "SELECT * FROM pagina WHERE tipo = 'JE' ORDER BY paginaId";
+
+            return $this->db->query($sql);
             
         }
         
