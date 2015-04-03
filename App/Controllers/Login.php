@@ -21,6 +21,7 @@ class Login extends Action
 
 		$log = Container::getClass("Log");
 
+		//armazena data e hora atua na variavel para montar o insert do log
 		$dataAtual = date('Y-m-d H:i:s');
 
 		if($dados){
@@ -29,11 +30,12 @@ class Login extends Action
 			$_SESSION[login] = $dados[login];
 			$_SESSION[tipoUsuarioId] = $dados[tipousuarioid];
 			
-			//insere log no banco
-			$sql["log"]["usuarioId"] = $dados[usuarioid];
+			//armazena valores para montar o insert do log
+			$sql["log"]["usuarioId"] = $_SESSION[usuarioId];
 			$sql["log"]["data"] = $dataAtual;
 			$sql["log"]["tipo"] = 'E';
 
+			//insere log no banco
 			$log->insert($sql["log"]);
 
 			//die(var_dump($sql["log"]));

@@ -14,12 +14,15 @@ class Logout extends Action
 
 		$dataAtual = date('Y-m-d H:i:s');
 		//die(var_dump($_SESSION));
-		//insere log no banco
+		
+		//armazena valores para montar o insert do log
 		$sql["log"]["usuarioId"] = $_SESSION["usuarioId"];
 		$sql["log"]["data"] = $dataAtual;
 		$sql["log"]["tipo"] = 'S';
 
+		//insere log no banco
 		$log->insert($sql["log"]);
+
 		session_start();
 
 		unset($_SESSION);
