@@ -32,12 +32,15 @@ abstract class Table
         
         public function insert(array $data)
         {
+
             $keysData = array_keys($data);
             $keysData = implode($keysData,',');
             
             $values = implode("','", $data);
             
             $stmt = $this->db->prepare("INSERT INTO {$this->table} ({$keysData}) VALUES('{$values}') ");
+
+            //die(var_dump("INSERT INTO {$this->table} ({$keysData}) VALUES('{$values}') "));
             
             $stmt->execute();
             
@@ -72,7 +75,7 @@ abstract class Table
 		$senha = md5($dados[senha]);
 		$sql = "
 				SELECT 
-					A.usuarioId,
+					A.usuarioid,
 					A.nome,
 					A.ativo,
 					A.login,
