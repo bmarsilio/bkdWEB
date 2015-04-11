@@ -67,6 +67,13 @@ class Init extends Bootstrap
                     'action' => 'edit'
                 );
 		
+                #Gerenciador
+                $ar['gerenciador'] = array( 
+                    'route' => '/gerenciador',
+                    'controller' => 'Gerenciador',
+                    'action' => 'index'
+                );
+                
 		#relatorio
                 $ar['relatorio'] = array('route'=>'/relatorio','controller'=>'relatorio','action'=>'index');
         

@@ -38,7 +38,6 @@ abstract class Table
             $values = implode("','", $data);
             
             $stmt = $this->db->prepare("INSERT INTO {$this->table} ({$keysData}) VALUES('{$values}') ");
-            
             $stmt->execute();
             
         }
@@ -60,7 +59,6 @@ abstract class Table
             $set = substr($set, 0, strlen($set) - 2);
             
             $sql = "UPDATE {$this->table} SET $set WHERE $where";
-            
             
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
