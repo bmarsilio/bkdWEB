@@ -126,3 +126,8 @@ WITH (
 );
 ALTER TABLE log
   OWNER TO postgres;
+
+
+-------------------------------------------------------------------------------------------
+
+ALTER TABLE notificacao RENAME COLUMN datanotificacao TO data
