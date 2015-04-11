@@ -105,3 +105,24 @@ ALTER TABLE tipousuario
 
 
 -------------------------------------------------------------------------------------------
+
+-- Table: log
+
+-- DROP TABLE log;
+
+CREATE TABLE log
+(
+  logid bigserial NOT NULL,
+  usuarioid bigserial NOT NULL,
+  tipo character varying,
+  data character varying,
+  CONSTRAINT log_pkey PRIMARY KEY (logid),
+  CONSTRAINT log_usuarioid_fkey FOREIGN KEY (usuarioid)
+      REFERENCES usuario (usuarioid) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE log
+  OWNER TO postgres;
