@@ -59,7 +59,7 @@ class Pagina extends Table
             return $this;
         }
 
-        function setHtmlAtual($htmlAtual) {
+        function setHtmlAtual($htmlAtual) {            
             $this->htmlAtual = $htmlAtual;
             return $this;
         }
@@ -152,13 +152,27 @@ class Pagina extends Table
             $sql = "SELECT * FROM pagina where paginaId = $paginaId";
             return $this->db->query($sql)->fetch(\PDO::FETCH_ASSOC);
         }
-
+        
         function compararHTML($html){
             if(strcmp($this->htmlAtual, $html) != 0 ) {
                 return true;
             } else {
                 return false;
             }
+        }
+        
+        function abrirArquivoHtmlAtual($paginaId){
+            if(file_exists(__DIR__.'/../sites/pagina_'.$paginaId.'.html')){
+                $html = file_get_contents(__DIR__.'/../sites/pagina_'.$paginaId.'.html');
+                return $html;
+            }else{
+                $file = fopen(__DIR__.'/../sites/pagina_'.$paginaId.'.html', 'a');
+                fclose($file);
+                $html = file_get_contents(__DIR__.'/../sites/pagina_'.$paginaId.'.html');
+                return $html;
+            }
+            
+            
         }
         
         function encontrarPalavraChave($palavraChave, $html){
@@ -169,26 +183,23 @@ class Pagina extends Table
             }
         }
         
-        public function atualizarHtmlAtual($html){
-            $this->setHtmlAtual($html);
-            $pagina = $this->toArray();
-            $pagina['id_key'] = 'paginaid';
-            $pagina['id'] = $pagina['paginaid'];
-            unset($pagina['paginaid']);
-            return $this->update($pagina);
-            
+        public function atualizarHtmlAtual($html, $paginaId){
+            $file = fopen(__DIR__.'/../sites/pagina_'.$paginaId.'.html', 'r+');
+            fwrite($file, $html);
+            fclose($file);
         }
         
         public function novaNotificacao($html , $palavraChave){
             if($this->compararHTML($html) && $this->encontrarPalavraChave($palavraChave, $html)) {
                 $notificacao = Container::getClass('notificacao');
                 $notificacao->novaNotificacao($this);
-                $this->atualizarHtmlAtual($html);
+                $this->atualizarHtmlAtual($html, $this->paginaId);
             }
         }
                 
         public function gerenciarAlteracoes($html){
             $palavrasChaves = explode(';', $this->busca);
+            $this->htmlAtual = $this->abrirArquivoHtmlAtual($this->paginaId);
             if(is_array($palavrasChaves)) {
                 foreach($palavrasChaves as $palavraChave) {
                     $this->novaNotificacao($html, $palavraChave);

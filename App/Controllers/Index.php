@@ -10,13 +10,12 @@ class Index extends Action
 
 	public function index()
 	{
-		
-		$this->render('index');
+            $this->render('index');
 	}
 
 	public function empresa()
 	{
-		$this->render('empresa');
+            $this->render('empresa');
 	}
 
 }

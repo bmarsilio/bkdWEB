@@ -75,12 +75,12 @@ class Notificacao extends Table
             $notificacaoObject = Container::getClass('notificacao');
                 
             $notificacaoObject
-                    ->setBusca($notificacao['busca'])
-                    ->setDescricao($notificacao['descricao'])
-                    ->setHtmlAtual($notificacao['html'])
-                    ->setLink($notificacao['link'])
+                    ->setNotificacaoId($notificacao['notificacaoid'])
                     ->setPaginaId($notificacao['paginaid'])
-                    ->setTipo($notificacao['tipo']);
+                    ->setData($notificacao['data'])
+                    ->setHora($notificacao['hora'])
+                    ->setDtClick($notificacao['dtclick'])
+                    ->setPalavraEncontrada($notificacao['palavraencontrada']);
             
             return $notificacaoObject;
                 
@@ -92,5 +92,43 @@ class Notificacao extends Table
         $notificacao['hora'] = date('H:m:s');
         $notificacao['palavraencontrada'] = $pagina->getBusca();
         $this->insert($notificacao);
+    }
+    
+    public function buscarPorNotificacaoId($notificacaoId)
+    {
+        $sql = ' SELECT * FROM notificacao WHERE notificacaoId = '.$notificacaoId;
+        return $this->db->query($sql)->fetch(\PDO::FETCH_ASSOC);
+    }
+    
+    public function marcarNotificacaoComoLida($notificacaoId)
+    {
+        $notificacao = $this->buscarPorNotificacaoId($notificacaoId);        
+        $notificacao = $this->setNotificacao($notificacao);
+        $notificacao->setDtClick(date('Y-m-d'));
+        return $notificacao->update();
+    }
+    
+    public function toArray()
+    {
+        $notificacao['notificacaoid'] = $this->notificacaoId;
+        $notificacao['paginaId'] = $this->paginaId;
+        $notificacao['hora'] = $this->hora;
+        $notificacao['data'] = $this->data;
+        $notificacao['dtclick'] = $this->dtClick;
+        $notificacao['palavraencontrada'] = $this->palavraEncontrada;
+        return $notificacao;
+        
+    }
+    
+    public function update(array $data=null)
+    {
+        $notificacao = $this->toArray();
+        $data = $notificacao;
+        $data['id_key'] = 'notificacaoId';
+        $data['id'] = $notificacao['notificacaoid'];
+        unset($data['notificacaoid']);
+        
+        parent::update($data);
+        return $data;
     }
 }
