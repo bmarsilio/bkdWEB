@@ -91,6 +91,7 @@ class Notificacao extends Table
         $notificacao['data'] = date('Y-m-d');
         $notificacao['hora'] = date('H:m:s');
         $notificacao['palavraencontrada'] = $pagina->getBusca();
+
         $this->insert($notificacao);
     }
     
@@ -98,6 +99,39 @@ class Notificacao extends Table
     {
         $sql = ' SELECT * FROM notificacao WHERE notificacaoId = '.$notificacaoId;
         return $this->db->query($sql)->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function buscarPorData($data,$dtClick)
+    {
+        $sql = "
+				SELECT 
+					A.notificacaoId,
+					B.descricao,
+					B.link,
+					A.palavraEncontrada,
+					A.data,
+					A.hora,
+					A.dtClick,
+					(
+						SELECT
+							count(*)
+						FROM
+							notificacao X
+						WHERE
+							X.data = A.data
+							AND X.dtClick ".$dtClick."
+					) as badge
+				FROM 
+					notificacao A
+					INNER JOIN pagina B ON (B.paginaId = A.paginaId)
+        		WHERE 
+        			data = '".$data."'
+        			and dtClick ".$dtClick."
+        		ORDER BY
+        			A.notificacaoid
+        ";
+        
+		return $this->db->query($sql);
     }
     
     public function marcarNotificacaoComoLida($notificacaoId)

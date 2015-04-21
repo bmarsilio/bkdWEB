@@ -29,54 +29,61 @@ class Init extends Bootstrap
 
 		#cadastros
                 
-                #Paginas
-                $ar['pagina'] = array( 
-                    'route' => '/pagina',
-                    'controller' => 'Pagina',
-                    'action' => 'cadpagina'
-                );
-                $ar['pagina-add'] = array( 
-                    'route' => '/pagina/add',
-                    'controller' => 'Pagina',
-                    'action' => 'add'
-                );
-                
-                $ar['pagina-edit'] = array( 
-                    'route' => '/pagina/edit',
-                    'controller' => 'Pagina',
-                    'action' => 'edit'
-                );
-                
-                
-                #Jornais Editais
-                $ar['jornaiseditais'] = array(
-                    'route' => '/jornaiseditais',
-                    'controller' => 'Pagina',
-                    'action' => 'cadjornaiseditais'
-                );
-		
-                $ar['jornaiseditais-add'] = array( 
-                    'route' => '/jornaiseditais/add',
-                    'controller' => 'Pagina',
-                    'action' => 'add'
-                );
-                
-                $ar['jornaiseditais-edit'] = array( 
-                    'route' => '/jornaiseditais/edit',
-                    'controller' => 'Pagina',
-                    'action' => 'edit'
-                );
-		
-                #Gerenciador
-                $ar['gerenciador'] = array( 
-                    'route' => '/gerenciador',
-                    'controller' => 'Gerenciador',
-                    'action' => 'index'
-                );
-                
-		#relatorio
-                $ar['relatorio'] = array('route'=>'/relatorio','controller'=>'relatorio','action'=>'index');
+        #Paginas
+        $ar['pagina'] = array( 
+            'route' => '/pagina',
+            'controller' => 'Pagina',
+            'action' => 'cadpagina'
+        );
+        $ar['pagina-add'] = array( 
+            'route' => '/pagina/add',
+            'controller' => 'Pagina',
+            'action' => 'add'
+        );
         
+        $ar['pagina-edit'] = array( 
+            'route' => '/pagina/edit',
+            'controller' => 'Pagina',
+            'action' => 'edit'
+        );
+
+
+        #Jornais Editais
+        $ar['jornaiseditais'] = array(
+            'route' => '/jornaiseditais',
+            'controller' => 'Pagina',
+            'action' => 'cadjornaiseditais'
+        );
+
+        $ar['jornaiseditais-add'] = array( 
+            'route' => '/jornaiseditais/add',
+            'controller' => 'Pagina',
+            'action' => 'add'
+        );
+        
+        $ar['jornaiseditais-edit'] = array( 
+            'route' => '/jornaiseditais/edit',
+            'controller' => 'Pagina',
+            'action' => 'edit'
+        );
+
+        #Gerenciador
+        $ar['gerenciador'] = array( 
+            'route' => '/gerenciador',
+            'controller' => 'Gerenciador',
+            'action' => 'index'
+        );
+        
+		#relatorio
+        $ar['relatorio'] = array('route'=>'/relatorio','controller'=>'relatorio','action'=>'index');
+
+        #notificacao
+        $ar['notificacao-pagina-atualiza'] = array( 
+            'route' => '/notificacao/atualiza/pagina',
+            'controller' => 'Notificacoes',
+            'action' => 'atualizaDtClickNotificacao'
+        );
+
 		$this->setRoutes($ar);
 	}
 

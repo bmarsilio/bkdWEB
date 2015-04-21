@@ -16,7 +16,7 @@ class Gerenciador extends Action
             $this->view->msg = "Gerenciando alterações de páginas";
             $this->gerenciaPaginas();
         } else {
-            $this->view->msg = "Você não altorização a este módulo";
+            $this->view->msg = "Você não possui autorização a este módulo";
         }
         
         $this->render('index');
