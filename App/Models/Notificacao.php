@@ -101,7 +101,7 @@ class Notificacao extends Table
         return $this->db->query($sql)->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function buscarPorData($data,$dtClick)
+    public function buscarPorData($data,$dtClick,$tipo)
     {
         $sql = "
 				SELECT 
@@ -125,12 +125,14 @@ class Notificacao extends Table
 					notificacao A
 					INNER JOIN pagina B ON (B.paginaId = A.paginaId)
         		WHERE 
-        			data = '".$data."'
-        			and dtClick ".$dtClick."
+        			A.data = '".$data."'
+        			and A.dtClick ".$dtClick."
+        			and b.tipo = '".$tipo."'
         		ORDER BY
         			A.notificacaoid
         ";
-        
+        //print("<pre>".$sql."</pre>");
+		
 		return $this->db->query($sql);
     }
     

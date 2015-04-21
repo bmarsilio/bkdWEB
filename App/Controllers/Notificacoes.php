@@ -16,10 +16,12 @@ class Notificacoes extends Action
 		}else{
 			$data = $_POST['dtFiltroPagina'];
 		}
-		$this->view->notificacoesNaoVistas = $Notificacao->buscarPorData($data,'is null');
-		$this->view->notificacoesVistas = $Notificacao->buscarPorData($data,'is not null');
-		$this->view->badgeNaoVistas = $Notificacao->buscarPorData($data,'is null');
-		$this->view->badgeVistas = $Notificacao->buscarPorData($data,'is not null');
+		$this->view->notificacoesNaoVistas = $Notificacao->buscarPorData($data,'is null','P');
+		$this->view->notificacoesVistas = $Notificacao->buscarPorData($data,'is not null','P');
+		
+		$this->view->badgeNaoVistas = $Notificacao->buscarPorData($data,'is null','P');
+		$this->view->badgeVistas = $Notificacao->buscarPorData($data,'is not null','P');
+		
 		$this->render('paginas');
 	}
 
@@ -30,6 +32,19 @@ class Notificacoes extends Action
 
 	public function jornalEdital()
 	{
+		$Notificacao = Container::getClass('Notificacao');
+		if(!$_POST['dtFiltroJornalEdital']){
+			$data = date('d-m-Y');
+		}else{
+			$data = $_POST['dtFiltroJornalEdital'];
+		}
+
+		$this->view->notificacoesNaoVistas = $Notificacao->buscarPorData($data,'is null','J');
+		$this->view->notificacoesVistas = $Notificacao->buscarPorData($data,'is not null','J');
+		
+		$this->view->badgeNaoVistas = $Notificacao->buscarPorData($data,'is null','J');
+		$this->view->badgeVistas = $Notificacao->buscarPorData($data,'is not null','J');
+
 		$this->render('jornaisEditais');
 	}
 

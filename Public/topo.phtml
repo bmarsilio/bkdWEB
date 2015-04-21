@@ -1,4 +1,28 @@
-<?php //var_dump($_SESSION); ?>
+<?php
+	use SON\Di\Container;
+
+	$Notificacao = Container::getClass('Notificacao');
+	$data = date('d-m-Y');
+	
+	$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','P');
+	$OBbadgeJE = $Notificacao->buscarPorData($data,'is null','J');
+
+	foreach ($OBbadgePagina as $key) {
+		$badgePagina = $key[badge];
+	}
+
+	foreach ($OBbadgeJE as $key) {
+		$badgeJE = $key[badge];
+	}
+
+	if(!$badgePagina){
+		$badgePagina = 0;
+	}
+
+	if(!$badgeJE){
+		$badgeJE = 0;
+	}
+?>
 <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container-fluid">
 
@@ -25,8 +49,8 @@
                         <li><a href="/jornaiseditais"><span class="glyphicon glyphicon-folder-open"></span> Jornais | Editais</a></li>
                     </ul>
                 </li>
-                <li><a href="/notificacoes-paginas">Notificações Páginas <span class="badge" >4</span></a></li>
-                <li><a href="/notificacoes-jornais-editais">Notificações Jornais | Editais <span class="badge" >4</span></a></li>
+                <li><a href="/notificacoes-paginas">Notificações Páginas <span class="badge" ><?php echo $badgePagina; ?></span></a></li>
+                <li><a href="/notificacoes-jornais-editais">Notificações Jornais | Editais <span class="badge" ><?php echo $badgeJE; ?></span></a></li>
                 <?php
                 	//valida se o usuario que esta logado e do tipo administrador(1) para mostrar o menu de relatorios
                 	if($_SESSION[tipoUsuarioId] == 1){
