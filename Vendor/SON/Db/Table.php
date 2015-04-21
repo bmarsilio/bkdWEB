@@ -39,7 +39,7 @@ abstract class Table
             $values = implode("','", $data);
             
             $stmt = $this->db->prepare("INSERT INTO {$this->table} ({$keysData}) VALUES('{$values}') ");
-            
+          
             $stmt->execute();
             
         }

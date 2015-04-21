@@ -1,4 +1,7 @@
 <?php
+	/*
+	* implementacao para que independente da controller que estiver sendo executada, os badges da barra superior fiquem ok
+	*/
 	use SON\Di\Container;
 
 	$Notificacao = Container::getClass('Notificacao');
@@ -15,6 +18,9 @@
 		$badgeJE = $key[badge];
 	}
 
+	/*
+	* caso nao tenha notificao, mostra '0' ao inves de nada
+	*/
 	if(!$badgePagina){
 		$badgePagina = 0;
 	}

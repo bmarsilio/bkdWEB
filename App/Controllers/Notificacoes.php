@@ -39,11 +39,11 @@ class Notificacoes extends Action
 			$data = $_POST['dtFiltroJornalEdital'];
 		}
 
-		$this->view->notificacoesNaoVistas = $Notificacao->buscarPorData($data,'is null','J');
-		$this->view->notificacoesVistas = $Notificacao->buscarPorData($data,'is not null','J');
+		$this->view->notificacoesNaoVistas = $Notificacao->buscarPorData($data,'is null','JE');
+		$this->view->notificacoesVistas = $Notificacao->buscarPorData($data,'is not null','JE');
 		
-		$this->view->badgeNaoVistas = $Notificacao->buscarPorData($data,'is null','J');
-		$this->view->badgeVistas = $Notificacao->buscarPorData($data,'is not null','J');
+		$this->view->badgeNaoVistas = $Notificacao->buscarPorData($data,'is null','JE');
+		$this->view->badgeVistas = $Notificacao->buscarPorData($data,'is not null','JE');
 
 		$this->render('jornaisEditais');
 	}
