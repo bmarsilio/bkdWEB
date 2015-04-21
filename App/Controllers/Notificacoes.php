@@ -7,7 +7,6 @@ use SON\Di\Container;
 
 class Notificacoes extends Action
 {
-
 	public function pagina()
 	{
 		$Notificacao = Container::getClass('Notificacao');
@@ -46,6 +45,48 @@ class Notificacoes extends Action
 		$this->view->badgeVistas = $Notificacao->buscarPorData($data,'is not null','JE');
 
 		$this->render('jornaisEditais');
+	}
+
+	public function refreshPagina(){
+		
+		$Notificacao = Container::getClass('Notificacao');
+		$data = date('d-m-Y');
+		
+		$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','P');
+		
+		foreach ($OBbadgePagina as $key) {
+			$badge = $key[badge];
+		}
+
+		/*
+		* caso nao tenha notificacao, mostra '0' ao inves de nada
+		*/
+		if(!$badge){
+			$badge = 0;
+		}
+
+		echo $badge;
+
+	}
+
+	public function refreshJornalEdital(){
+		$Notificacao = Container::getClass('Notificacao');
+		$data = date('d-m-Y');
+		
+		$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','JE');
+		
+		foreach ($OBbadgePagina as $key) {
+			$badge = $key[badge];
+		}
+
+		/*
+		* caso nao tenha notificacao, mostra '0' ao inves de nada
+		*/
+		if(!$badge){
+			$badge = 0;
+		}
+
+		echo $badge;
 	}
 
 }

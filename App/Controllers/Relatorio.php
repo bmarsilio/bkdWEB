@@ -11,7 +11,16 @@ class Relatorio extends Action
 	public function index()
 	{
 		
-		$this->render('relatorio');
+	}
+
+	public function relatorioLog()
+	{
+		$relatorio = Container::getClass('Relatorio');
+		if($_POST[dtInicial] && $_POST[dtFinal]){	
+			$this->view->dados = $relatorio->relatorioLogAcesso($_POST[dtInicial],$_POST[dtFinal]);
+		}
+		
+		$this->render('relatorioLog');
 	}
 
 }

@@ -48,7 +48,7 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade in active" id="home">
-            <table class="table">
+            <table class="table" id="table1">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -79,7 +79,7 @@
             </table>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="profile">
-            <table class="table">
+            <table class="table" id="table1">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -104,7 +104,6 @@
                 			<td><?php echo $notificacao[data]?></td>
                 			<td><?php echo $notificacao[hora]?></td>
                 			<td><?php echo $notificacao[dtclick]?></td>
-                			<td></td>
                 		</tr>
 					<?php endforeach ?>
                 </tbody>
@@ -121,10 +120,4 @@
             e.relatedTarget // previous active tab
         })
     });
-
-	/* Máscaras */
-	jQuery(function($){
-		$(".dateInput").mask("99/99/9999");
-
-	})
 </script>

@@ -1,34 +1,3 @@
-<?php
-	/*
-	* implementacao para que independente da controller que estiver sendo executada, os badges da barra superior fiquem ok
-	*/
-	use SON\Di\Container;
-
-	$Notificacao = Container::getClass('Notificacao');
-	$data = date('d-m-Y');
-	
-	$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','P');
-	$OBbadgeJE = $Notificacao->buscarPorData($data,'is null','J');
-
-	foreach ($OBbadgePagina as $key) {
-		$badgePagina = $key[badge];
-	}
-
-	foreach ($OBbadgeJE as $key) {
-		$badgeJE = $key[badge];
-	}
-
-	/*
-	* caso nao tenha notificao, mostra '0' ao inves de nada
-	*/
-	if(!$badgePagina){
-		$badgePagina = 0;
-	}
-
-	if(!$badgeJE){
-		$badgeJE = 0;
-	}
-?>
 <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container-fluid">
 
@@ -55,16 +24,16 @@
                         <li><a href="/jornaiseditais"><span class="glyphicon glyphicon-folder-open"></span> Jornais | Editais</a></li>
                     </ul>
                 </li>
-                <li><a href="/notificacoes-paginas">Notificações Páginas <span class="badge" ><?php echo $badgePagina; ?></span></a></li>
-                <li><a href="/notificacoes-jornais-editais">Notificações Jornais | Editais <span class="badge" ><?php echo $badgeJE; ?></span></a></li>
+                <li><a href="/notificacoes-paginas">Notificações Páginas <span class="badge" id="badgePagina"></span></a></li>
+                <li><a href="/notificacoes-jornais-editais">Notificações Jornais | Editais <span class="badge" id="badgeJornalEdital" ></span></a></li>
                 <?php
                 	//valida se o usuario que esta logado e do tipo administrador(1) para mostrar o menu de relatorios
-                	if($_SESSION[tipoUsuarioId] == 1){
+                	if($_SESSION[tipoUsuarioId] == 1):
                 ?>
-                		<li><a href="/relatorio"><span class="glyphicon glyphicon-list-alt"></span> Relatórios</a></li>
+                		<li><a href="/relatorioLog"><span class="glyphicon glyphicon-list-alt"></span> Relatório</a></li>
                         <li><a href="/gerenciador"><span class="glyphicon glyphicon-user"></span> Iniciar Gerenciador</a></li>
                 <?php
-                	}//endIf
+                	endif;
                 ?>
             </ul>
 
@@ -72,6 +41,26 @@
                 <li><a href="/logout"><span class="glyphicon glyphicon-ban-circle"></span> Logout </a></li>
             </ul>
         </div>
-
     </div>
 </nav>
+
+<script type="text/javascript">
+	/*
+	* script utilizado para dar refresh automatico nos badges da barra superior
+	*/
+	$(document).ready(function(){
+		atualiza();
+	});
+
+	function atualiza(){
+		$.get('/notificacao/refresh/pagina', function(resultado){
+			$('#badgePagina').html(resultado);
+		})
+
+		$.get('/notificacao/refresh/jornaledital', function(resultado){
+			$('#badgeJornalEdital').html(resultado);
+		})
+
+		setTimeout('atualiza()', 1000);
+	}
+</script>
