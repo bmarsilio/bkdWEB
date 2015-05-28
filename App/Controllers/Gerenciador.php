@@ -30,8 +30,15 @@ class Gerenciador extends Action
         $paginas = $paginaModel->listarTodos();
         
         foreach($paginas as $pagina){
-            $html = $curl->coletarHTML($pagina->getLink());
-            $pagina->gerenciarAlteracoes($html);
+            if( $pagina->getCountReload() == $pagina->getReload() ) {
+                $html = $curl->coletarHTML($pagina->getLink());
+                $pagina->gerenciarAlteracoes($html);
+                $pagina->setCountReload(0);
+            } else {
+                $pagina->setCountReload( $pagina->getCountReload() + 1 );
+            }
+            
+            $pagina->alterar();
         }
     }
     

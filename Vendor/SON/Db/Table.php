@@ -62,6 +62,7 @@ abstract class Table
             
             $sql = "UPDATE {$this->table} SET $set WHERE $where";
             
+            
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             

@@ -18,6 +18,8 @@ class Pagina extends Table
         private $tipo;
         private $notificacoes;
         private $ativo;
+        private $reload;
+        private $countReload;
         
         function getPaginaId() {
             return $this->paginaId;
@@ -91,7 +93,27 @@ class Pagina extends Table
             $this->notificacoes = $notificacoes;
             return $this;
         }
+        
+        function getCountReload() {
+            return $this->countReload;
+        }
 
+        function setCountReload($countReload) {
+            $this->countReload = $countReload;
+            return $this;
+        }
+        
+        function getReload() {
+            return $this->reload;
+        }
+
+        function setReload($reload) {
+            $this->reload = $reload;
+            return $this;
+        }
+
+        
+        
         
         function setPagina(array $pagina){
             $paginaObject = Container::getClass('pagina');
@@ -103,7 +125,9 @@ class Pagina extends Table
                     ->setLink($pagina['link'])
                     ->setPaginaId($pagina['paginaid'])
                     ->setTipo($pagina['tipo'])
-                    ->setAtivo($pagina['ativo']);
+                    ->setAtivo($pagina['ativo'])
+                    ->setCountReload($pagina['countreload'])
+                    ->setReload($pagina['reload']);
             
             return $paginaObject;
                 
@@ -117,6 +141,9 @@ class Pagina extends Table
             $pagina['htmlatual'] = $this->getHtmlAtual();
             $pagina['tipo'] = $this->getTipo();
             $pagina['ativo'] = $this->getAtivo();
+            $pagina['countreload'] = $this->getCountReload();
+            $pagina['reload'] = $this->getReload();
+            
             return $pagina;
         }
                 
@@ -207,6 +234,13 @@ class Pagina extends Table
             } else {
                 $this->novaNotificacao($html, $this->busca);
             }
+        }
+        
+        public function alterar() {
+            $pagina = $this->toArray();
+            $pagina['id_key'] = 'paginaid';
+            $pagina['id'] = $pagina['paginaid'];
+            return parent::update($pagina);
         }
         
 }

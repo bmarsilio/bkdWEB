@@ -131,3 +131,7 @@ ALTER TABLE log
 -------------------------------------------------------------------------------------------
 
 ALTER TABLE notificacao RENAME COLUMN datanotificacao TO data
+
+-------------------------------------------------------------------------------------------
+
+ALTER TABLE pagina add column countreload integer NOT NULL DEFAULT 0
