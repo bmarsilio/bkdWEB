@@ -24,21 +24,29 @@ class Gerenciador extends Action
     
     public function gerenciaPaginas()
     {
-        $paginaModel = Container::getClass('pagina');
-        $curl = new Curl();
+        try {
         
-        $paginas = $paginaModel->listarTodos();
-        
-        foreach($paginas as $pagina){
-            if( $pagina->getCountReload() == $pagina->getReload() ) {
-                $html = $curl->coletarHTML($pagina->getLink());
-                $pagina->gerenciarAlteracoes($html);
-                $pagina->setCountReload(0);
-            } else {
-                $pagina->setCountReload( $pagina->getCountReload() + 1 );
+            $paginaModel = Container::getClass('pagina');
+            $curl = new Curl();
+
+            $paginas = $paginaModel->listarPaginasAutorizadas();
+
+            foreach($paginas as $pagina){
+
+                if( $pagina->getCountReload() == $pagina->getReload() ) {
+                    $html = $curl->coletarHTML($pagina->getLink());
+                    $pagina->gerenciarAlteracoes($html);
+                    $pagina->setCountReload(0);
+                } else {
+                    $pagina->setCountReload( $pagina->getCountReload() + 1 );
+                }
+
+                $pagina->alterar();
             }
+        } catch(Exception $e) {
             
-            $pagina->alterar();
+            $this->gerenciaPaginas();
+            
         }
     }
     

@@ -175,6 +175,30 @@ class Pagina extends Table
             
         }
         
+        public function listarPaginasAutorizadas() {
+            $sql = "
+                SELECT 
+                    * 
+                FROM 
+                    pagina 
+                WHERE 
+                    ativo is true 
+                GROUP BY 
+                    paginaid, descricao, link, busca, htmlatual, tipo, ativo, reload,countreload 
+                HAVING 
+                    countreload <= max(countreload)
+                ORDER BY
+                    countreload
+                LIMIT 10";
+            $paginas = $this->db->query($sql);
+            
+            foreach($paginas as $pagina){
+                $paginasObjects[] = $this->setPagina($pagina);
+            }
+            
+            return $paginasObjects;
+        }
+        
         function buscarPorId($paginaId){
             $sql = "SELECT * FROM pagina where paginaId = $paginaId";
             return $this->db->query($sql)->fetch(\PDO::FETCH_ASSOC);

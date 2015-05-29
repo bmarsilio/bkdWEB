@@ -8,7 +8,6 @@ class business
 	{
 
 		$db = new \PDO("pgsql:host=localhost;dbname=bkdwebdev","postgres","123456");
-
 		return $db;
 	}
 }

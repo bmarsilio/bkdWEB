@@ -11,6 +11,7 @@ abstract class Table
 	{
 		$this->db = $db;
 	}
+        
 
 	public function fetchAll()
 	{
