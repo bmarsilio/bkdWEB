@@ -2,101 +2,110 @@
 
 namespace SON\Db;
 
-abstract class Table
-{
-	protected $db;
-	protected $table;
+abstract class Table {
 
-	public function __construct(\PDO $db)
-	{
-		$this->db = $db;
-	}
-        
+    protected $db;
+    protected $table;
 
-	public function fetchAll()
-	{
-		$sql = "SELECT * FROM {$this->table}";
+    public function __construct(\PDO $db) {
+        //$this->db = $db;
+        $this->db = null;
+    }
 
-		return $this->db->query($sql);
-	}
+    protected function connect() {
+        $this->db = new \PDO("pgsql:host=localhost;dbname=bkdwebdev", "postgres", "123456");
+    }
 
-	public function find($id)
-	{
-		$stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE ID =: id");
-		$stmt->bindParam(":id",$id);
-		$stmt->execute();
+    protected function disconnect() {
+        $this->db = null;
+    }
 
-		$res = $stmt->fetch();
+    public function fetchAll() {
 
-		return $res;
-	}
-        
-        public function insert(array $data)
-        {
+        $sql = "SELECT * FROM {$this->table}";
+        $this->connect();
+        $result = $this->db->query($sql);
+        $this->disconnect();
 
-            $keysData = array_keys($data);
-            $keysData = implode($keysData,',');
-            
-            $values = implode("','", $data);
-            
-            $stmt = $this->db->prepare("INSERT INTO {$this->table} ({$keysData}) VALUES('{$values}') ");
-          
-            $stmt->execute();
-            
+        return $result;
+    }
+
+    public function find($id) {
+        $this->connect();
+        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE ID =: id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        $res = $stmt->fetch();
+        $this->disconnect();
+        return $res;
+    }
+
+    public function insert(array $data) {
+        $this->connect();
+        $keysData = array_keys($data);
+        $keysData = implode($keysData, ',');
+
+        $values = implode("','", $data);
+
+        $stmt = $this->db->prepare("INSERT INTO {$this->table} ({$keysData}) VALUES('{$values}') ");
+
+        $stmt->execute();
+        $this->disconnect();
+    }
+
+    public function update(array $data) {
+
+        $this->connect();
+
+        $where = "{$data['id_key']}={$data['id']}";
+        unset($data['id_key']);
+        unset($data['id']);
+
+        foreach ($data as $key => $a) {
+
+            $set .= " $key = '$a', ";
         }
-        
-        public function update(array $data)
-        {
-            
-            
-            $where = "{$data['id_key']}={$data['id']}";
-            unset($data['id_key']);
-            unset($data['id']);
-            
-            foreach($data as $key => $a){
-                
-                $set .= " $key = '$a', ";
-                
-            }            
-            
-            $set = substr($set, 0, strlen($set) - 2);
-            
-            $sql = "UPDATE {$this->table} SET $set WHERE $where";
-            
-            
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-            
-        }
-        
-	public function autentica($dados)
-	{
-		$senha = md5($dados[senha]);
-		$sql = "
-				SELECT 
-					A.usuarioid,
-					A.nome,
-					A.ativo,
-					A.login,
-					B.descricao as tipoUsuario,
-					B.tipoUsuarioId as tipoUsuarioId
-				FROM 
-					{$this->table} A
-					inner join tipoUsuario B on (B.tipoUsuarioId = A.tipoUsuarioId)
-				WHERE
-					A.login = '$dados[usuario]'
-					AND A.senha = '$senha'
-					AND A.ativo = '1'
-		";
-		/*
-		print("<pre>".$sql."</pre>");
-		die();
-		*/
-		$consulta = $this->db->prepare($sql);
-		$consulta->execute();
 
-		$resultSet = $consulta->fetch();
+        $set = substr($set, 0, strlen($set) - 2);
 
-		return $resultSet;
-	}
+        $sql = "UPDATE {$this->table} SET $set WHERE $where";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        $this->disconnect();
+    }
+
+    public function autentica($dados) {
+        $this->connect();
+        $senha = md5($dados[senha]);
+        $sql = "
+                            SELECT 
+                                    A.usuarioid,
+                                    A.nome,
+                                    A.ativo,
+                                    A.login,
+                                    B.descricao as tipoUsuario,
+                                    B.tipoUsuarioId as tipoUsuarioId
+                            FROM 
+                                    {$this->table} A
+                                    inner join tipoUsuario B on (B.tipoUsuarioId = A.tipoUsuarioId)
+                            WHERE
+                                    A.login = '$dados[usuario]'
+                                    AND A.senha = '$senha'
+                                    AND A.ativo = '1'
+            ";
+        /*
+          print("<pre>".$sql."</pre>");
+          die();
+         */
+        $consulta = $this->db->prepare($sql);
+        $consulta->execute();
+
+        $resultSet = $consulta->fetch();
+        $this->disconnect();
+        return $resultSet;
+    }
+
 }

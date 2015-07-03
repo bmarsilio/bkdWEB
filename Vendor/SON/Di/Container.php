@@ -2,25 +2,24 @@
 
 namespace SON\Di;
 
-class Container
-{
-	public static function getClass($name)
-	{
-		$str_class = "\\App\\Models\\".ucfirst($name);
+class Container {
 
-		$class = new $str_class(\App\business::getDb());
+    public static function getClass($name) {
+        $str_class = "\\App\\Models\\" . ucfirst($name);
 
-		return $class;
-	}
+        $class = new $str_class(\App\business::getDb());
 
-	public static function trataData($data)
-	{
-		if(strpos($data,'/') > 0){
-			$resultado = implode( '-', array_reverse( explode( '/', $data ) ) );
-		}else{
-			$resultado = implode( '/', array_reverse( explode( '-', $data ) ) );
-		}
+        return $class;
+    }
 
-		return $resultado;
-	}
+    public static function trataData($data) {
+        if (strpos($data, '/') > 0) {
+            $resultado = implode('-', array_reverse(explode('/', $data)));
+        } else {
+            $resultado = implode('/', array_reverse(explode('-', $data)));
+        }
+
+        return $resultado;
+    }
+
 }

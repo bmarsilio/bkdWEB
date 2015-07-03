@@ -6,48 +6,47 @@ use App\Utils\Curl;
 use SON\Controller\Action;
 use SON\Di\Container;
 
-class Gerenciador extends Action
-{
-    
-    public function index()
-    {
-        
-        if($_SESSION[tipoUsuarioId] == 1) {
+class Gerenciador extends Action {
+
+    public function index() {
+
+        if ($_SESSION[tipoUsuarioId] == 1) {
             $this->view->msg = "Gerenciando alterações de páginas";
             $this->gerenciaPaginas();
         } else {
             $this->view->msg = "Você não possui autorização a este módulo";
         }
-        
+
         $this->render('index');
     }
-    
-    public function gerenciaPaginas()
-    {
+
+    public function gerenciaPaginas() {
         try {
-        
+
             $paginaModel = Container::getClass('pagina');
             $curl = new Curl();
 
             $paginas = $paginaModel->listarPaginasAutorizadas();
 
-            foreach($paginas as $pagina){
-
-                if( $pagina->getCountReload() == $pagina->getReload() ) {
+            foreach ($paginas as $pagina) {
+                sleep(0.5);
+                if ($pagina->getCountReload() == $pagina->getReload()) {
                     $html = $curl->coletarHTML($pagina->getLink());
                     $pagina->gerenciarAlteracoes($html);
                     $pagina->setCountReload(0);
                 } else {
-                    $pagina->setCountReload( $pagina->getCountReload() + 1 );
+                    $pagina->setCountReload($pagina->getCountReload() + 1);
                 }
 
                 $pagina->alterar();
             }
-        } catch(Exception $e) {
-            
-            $this->gerenciaPaginas();
-            
+        } catch (\PDOException $e) {
+            echo 'O Gerenciador Parou '.__DIR__;
+            error_log('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()."\n", 3, __DIR__.'\error_'.date('d-m-Y').'.log');
+        } catch (\Exception $e) {
+            echo 'Erro no gerenciador';
+            error_log('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()."\n", 3, __DIR__.'\error_'.date('d-m-Y').'.log');
         }
     }
-    
+
 }
