@@ -57,7 +57,7 @@ abstract class Table {
     public function update(array $data) {
 
         $this->connect();
-
+        $set = null;
         $where = "{$data['id_key']}={$data['id']}";
         unset($data['id_key']);
         unset($data['id']);

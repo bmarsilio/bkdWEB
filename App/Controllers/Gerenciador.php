@@ -9,7 +9,7 @@ use SON\Di\Container;
 class Gerenciador extends Action {
 
     public function index() {
-
+        
         if ($_SESSION[tipoUsuarioId] == 1) {
             $this->view->msg = "Gerenciando alterações de páginas";
             $this->gerenciaPaginas();
@@ -31,7 +31,7 @@ class Gerenciador extends Action {
             foreach ($paginas as $pagina) {
                 sleep(0.5);
                 if ($pagina->getCountReload() == $pagina->getReload()) {
-                    $html = $curl->coletarHTML($pagina->getLink());
+                    $html = $curl->lerHTML($pagina->getLink());
                     $pagina->gerenciarAlteracoes($html);
                     $pagina->setCountReload(0);
                 } else {

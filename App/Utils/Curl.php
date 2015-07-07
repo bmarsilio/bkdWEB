@@ -3,7 +3,7 @@ namespace App\Utils;
 
 class Curl {
     
-    public function coletarHTML($url){
+    public function lerHTML($url){
         try{
             $ch = curl_init();
             $timeout = 0;
