@@ -209,8 +209,10 @@ class Pagina extends Table {
     }
 
     function buscarPorId($paginaId) {
+        $this->connect();
         $sql = "SELECT * FROM pagina where paginaId = $paginaId";
         return $this->db->query($sql)->fetch(\PDO::FETCH_ASSOC);
+        $this->disconnect();
     }
 
     function compararHTML($html) {
@@ -242,7 +244,7 @@ class Pagina extends Table {
     }
 
     public function atualizarHtmlAtual($html, $paginaId) {
-        $file = fopen(__DIR__ . '/../sites/pagina_' . $paginaId . '.html', 'r+');
+        $file = fopen(__DIR__ . '/../sites/pagina_' . $paginaId . '.html', 'w+');
         fwrite($file, $html);
         fclose($file);
     }
@@ -253,6 +255,9 @@ class Pagina extends Table {
             $notificacao->setPalavraEncontrada($palavraChave);
             $notificacao->novaNotificacao($this,$palavraChave);
             $this->atualizarHtmlAtual($html, $this->paginaId);
+            return true;
+        }else{
+            return false;
         }
     }
 
@@ -261,7 +266,9 @@ class Pagina extends Table {
         $this->htmlAtual = $this->abrirArquivoHtmlAtual($this->paginaId);
         if (is_array($palavrasChaves)) {
             foreach ($palavrasChaves as $palavraChave) {
-                $this->novaNotificacao($html, $palavraChave);
+                if($this->novaNotificacao($html, $palavraChave) == true){
+                    return;
+                }
             }
         } else {
             $this->novaNotificacao($html, $this->busca);
