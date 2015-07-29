@@ -12,7 +12,8 @@ class Gerenciador extends Action {
         
         if ($_SESSION[tipoUsuarioId] == 1) {
             $this->view->msg = "Gerenciando alterações de páginas";
-            $this->gerenciaPaginas();
+            //$this->gerenciaPaginas();
+            //$this->cmdGerenciador();
         } else {
             $this->view->msg = "Você não possui autorização a este módulo";
         }
@@ -39,12 +40,29 @@ class Gerenciador extends Action {
                 }
 
                 $pagina->alterar();
+                flush();
             }
         } catch (\PDOException $e) {
             echo 'O Gerenciador Parou '.__DIR__;
             error_log('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()."\n", 3, __DIR__.'\error_'.date('d-m-Y').'.log');
         } catch (\Exception $e) {
             echo 'Erro no gerenciador';
+            error_log('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()."\n", 3, __DIR__.'\error_'.date('d-m-Y').'.log');
+        }
+    }
+
+    public function cmdGerenciador(){
+
+        try{
+
+            $cmd = 'start /B php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas.txt &';
+            pclose(popen($cmd,'r'));
+
+        }catch(\PDOException $e){
+            echo 'O Gerenciador Parou '.__DIR__;
+            error_log('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()."\n", 3, __DIR__.'\error_'.date('d-m-Y').'.log');
+        }catch(\Exception $e){
+            echo 'O Gerenciador Parou '.__DIR__;
             error_log('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()."\n", 3, __DIR__.'\error_'.date('d-m-Y').'.log');
         }
     }

@@ -112,7 +112,13 @@ class Init extends Bootstrap {
             'controller' => 'Notificacoes',
             'action' => 'refreshJornalEdital'
         );
-        
+
+
+        $ar['cmd-gerenciador'] = array(
+            'route' => '/cmdgerenciador',
+            'controller' => 'Gerenciador',
+            'action' => 'cmdGerenciador'
+        );
 
         $this->setRoutes($ar);
     }

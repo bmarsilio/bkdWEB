@@ -1,26 +1,24 @@
 <?php
+session_start();
 
-require ('../../Vendor/SON/Db/Table.php');
-require ('../../Vendor/SON/Di/Container.php');
-require ('../business.php');
-require ('../Models/Pagina.php');
-require ('../Models/Notificacao.php');
-require ('../Utils/Curl.php');
+ignore_user_abort(true);
+set_time_limit(26000);
 
-
-ini_set('display_errors', 1);
-ini_set('display_startup_erros', 1);
-error_reporting(E_ALL);
-//524
-while (1) {
+require (__DIR__.'/../../Vendor/SON/Db/Table.php');
+require (__DIR__.'/../../Vendor/SON/Di/Container.php');
+require (__DIR__.'/../business.php');
+require (__DIR__.'/../Models/Pagina.php');
+require (__DIR__.'/../Models/Notificacao.php');
+require (__DIR__.'/../Utils/Curl.php');
 
 
-
-    $db = new \PDO("pgsql:host=localhost;dbname=bkdwebdev", "postgres", "123456");
+$curl = new \App\Utils\Curl();
+$db = new \PDO("pgsql:host=localhost;dbname=bkdwebdev", "postgres", "123456");
+//while (1) {
 
     $paginaModel = new App\Models\Pagina($db);
-    $curl = new \App\Utils\Curl();
-
+    
+    
     $paginas = $paginaModel->listarPaginasAutorizadas();
 
     foreach ($paginas as $pagina) {
@@ -35,4 +33,6 @@ while (1) {
 
         $pagina->alterar();
     }
-}
+//}
+
+session_write_close();

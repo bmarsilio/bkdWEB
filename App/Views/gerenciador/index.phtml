@@ -1,10 +1,33 @@
 <legend>Gerenciador</legend>
 
-<h1><?= $this->view->msg; ?></h1>
+<h1>Gerenciador de Sites</h1>
+
+<button id="btn-iniciar-gerenciador" type="button" class="btn btn-default" >Iniciar Gerenciador</button>
 
 <script>
 $(document).ready(function(){
-    window.location.assign('/gerenciador');
-    
+    //window.location.assign('/gerenciador');
+
+    $(document).ready(function(){
+
+        $('#btn-iniciar-gerenciador').click(function(element){
+            $.ajax({
+                url: "/cmdgerenciador",
+                beforeSend : function(){
+                    $('#btn-iniciar-gerenciador').html('<div class="three-quarters-loader">Loading</div>');
+                },
+                success: function (retorno) {
+                    $('#btn-iniciar-gerenciador').html('Iniciar Gerenciador');
+                    $('#btn-iniciar-gerenciador').click();
+                },
+                error: function (retorno) {
+                    $('#btn-iniciar-gerenciador').html('Iniciar Gerenciador');
+                    $('#btn-iniciar-gerenciador').click();
+                }
+            })
+        });
+
+    })
+
 })
 </script>
