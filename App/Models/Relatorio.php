@@ -10,6 +10,8 @@ class Relatorio extends Table
 {	
 	function relatorioLogAcesso($dtInicial,$dtFinal){
 
+        $this->connect();
+
 		$sql = "
 			SELECT 
 				B.nome,
@@ -29,7 +31,11 @@ class Relatorio extends Table
 				A.data
 		";
 
-		return $this->db->query($sql);
+        $resultado = $this->db->query($sql);
+
+        $this->disconnect();
+
+		return $resultado;
 
 	}
 
