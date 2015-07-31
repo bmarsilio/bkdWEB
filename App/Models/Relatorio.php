@@ -31,6 +31,7 @@ class Relatorio extends Table
 				A.data
 		";
 
+
         $resultado = $this->db->query($sql);
 
         $this->disconnect();
