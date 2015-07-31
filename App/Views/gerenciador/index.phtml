@@ -2,7 +2,8 @@
 
 <h1>Gerenciador de Sites</h1>
 
-<button id="btn-iniciar-gerenciador" type="button" class="btn btn-default" >Iniciar Gerenciador</button>
+
+    <button id="btn-iniciar-gerenciador" type="button" class="btn btn-default" >Iniciar Gerenciador</button>
 
 <script>
 $(document).ready(function(){
@@ -14,7 +15,7 @@ $(document).ready(function(){
             $.ajax({
                 url: "/cmdgerenciador",
                 beforeSend : function(){
-                    $('#btn-iniciar-gerenciador').html('<div class="three-quarters-loader">Loading</div>');
+                    $('#btn-iniciar-gerenciador').html('Executando ...<div class="three-quarters-loader">Loading</div>');
                 },
                 success: function (retorno) {
                     $('#btn-iniciar-gerenciador').html('Iniciar Gerenciador');
