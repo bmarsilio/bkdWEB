@@ -26,12 +26,11 @@ class Relatorio extends Table
 				INNER JOIN usuario B ON (B.usuarioId = A.usuarioId)
 				INNER JOIN tipoUsuario C ON (C.tipoUsuarioId = B.tipoUsuarioId)
 			WHERE
-				A.data BETWEEN '".$dtInicial."' AND '".$dtFinal."'
+				A.data BETWEEN '".$dtInicial." 00:00:00' AND '".$dtFinal." 23:59:59'
 			ORDER BY
 				A.data
 		";
-
-
+        
         $resultado = $this->db->query($sql);
 
         $this->disconnect();

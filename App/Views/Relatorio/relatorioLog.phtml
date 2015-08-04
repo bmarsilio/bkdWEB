@@ -38,7 +38,7 @@
 					<td><?php echo $key[nome]?></td>
 					<td><?php echo $key[tipousuario]?></td>
 					<td><?php echo $key[tipo]?></td>
-					<td><?php echo date('d/m/Y',$key[data]) ?></td>
+					<td><?php echo date('d/m/Y H:i:s', strtotime($key[data])) ?></td>
 				</tr>
 		<?php
 				endforeach;
