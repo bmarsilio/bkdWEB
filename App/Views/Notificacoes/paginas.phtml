@@ -146,7 +146,7 @@
 	                			<a href="<?php echo $notificacao[link]?>" target="_blank" onclick="atualizaNotificacao(<?php echo $notificacao[notificacaoid]?>);"><?php echo $notificacao[link]?></a>
                 			</td>
                 			<td><?php echo $notificacao[palavraencontrada]?></td>
-                			<td><?php echo $notificacao[data]?></td>
+                			<td><?php echo date('d/m/Y', strtotime($notificacao[data])); ?></td>
                 			<td><?php echo $notificacao[hora]?></td>
                 		</tr>
 					<?php endforeach ?>

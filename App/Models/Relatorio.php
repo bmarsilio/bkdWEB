@@ -30,7 +30,7 @@ class Relatorio extends Table
 			ORDER BY
 				A.data
 		";
-        
+
         $resultado = $this->db->query($sql);
 
         $this->disconnect();
