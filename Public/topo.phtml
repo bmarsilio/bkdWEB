@@ -44,6 +44,11 @@
     </div>
 </nav>
 
+<audio id="audio">
+	<source src="notification.ogg" type="audio/ogg">
+	<source src="notification.mp3" type="audio/mpeg">
+</audio>
+
 <script type="text/javascript">
 	/*
 	* script utilizado para dar refresh automatico nos badges da barra superior
@@ -53,11 +58,25 @@
 	});
 
 	function atualiza(){
+		audio = document.getElementById('audio');
+		
 		$.get('/notificacao/refresh/pagina', function(resultado){
+			
+			if(resultado > 0) {
+				console.log(resultado);
+				audio.play();
+			}
+			
 			$('#badgePagina').html(resultado);
 		})
 
 		$.get('/notificacao/refresh/jornaledital', function(resultado){
+			
+			if(resultado > 0) {
+				console.log(resultado);
+				audio.play();
+			}
+			
 			$('#badgeJornalEdital').html(resultado);
 		})
 
