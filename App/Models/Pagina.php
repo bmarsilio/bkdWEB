@@ -224,13 +224,13 @@ class Pagina extends Table {
     }
 
     function abrirArquivoHtmlAtual($paginaId) {
-        if (file_exists(__DIR__ . '/../sites/pagina_' . $paginaId . '.html')) {
-            $html = file_get_contents(__DIR__ . '/../sites/pagina_' . $paginaId . '.html');
+        if (file_exists(__DIR__ . '/../sites/pagina_' . $paginaId . '.txt')) {
+            $html = file_get_contents(__DIR__ . '/../sites/pagina_' . $paginaId . '.txt');
             return $html;
         } else {
-            $file = fopen(__DIR__ . '/../sites/pagina_' . $paginaId . '.html', 'a');
+            $file = fopen(__DIR__ . '/../sites/pagina_' . $paginaId . '.txt', 'w+');
             fclose($file);
-            $html = file_get_contents(__DIR__ . '/../sites/pagina_' . $paginaId . '.html');
+            $html = file_get_contents(__DIR__ . '/../sites/pagina_' . $paginaId . '.txt');
             return $html;
         }
     }
@@ -244,8 +244,10 @@ class Pagina extends Table {
     }
 
     public function atualizarHtmlAtual($html, $paginaId) {
-        $file = fopen(__DIR__ . '/../sites/pagina_' . $paginaId . '.html', 'w+');
+        $file = fopen(__DIR__ . '/../sites/pagina_' . $paginaId . '.txt', 'w+');
+        flock($file, LOCK_EX);
         fwrite($file, $html);
+        flock($file, LOCK_UN);
         fclose($file);
     }
 

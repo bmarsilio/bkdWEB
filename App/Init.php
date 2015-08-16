@@ -119,6 +119,8 @@ class Init extends Bootstrap {
             'controller' => 'Gerenciador',
             'action' => 'cmdGerenciador'
         );
+        
+
 
         $this->setRoutes($ar);
     }
