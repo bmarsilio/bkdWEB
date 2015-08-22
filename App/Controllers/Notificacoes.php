@@ -27,6 +27,7 @@ class Notificacoes extends Action
 	public function atualizaDtClickNotificacao(){
 		$Notificacao = Container::getClass('Notificacao');
 		$Notificacao->marcarNotificacaoComoLida($_POST[notificacao]);
+
 	}
 
 	public function jornalEdital()

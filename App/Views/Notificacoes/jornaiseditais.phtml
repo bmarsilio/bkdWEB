@@ -22,7 +22,8 @@
     function notificarPaginas(){
         if(confirm("Deseja Notificar as páginas selecionadas ?")){
             var checks = $('input[type=checkbox]:checked');
-
+            var count = checks.length;
+            
             if(checks[0] == undefined){
 
                 alert('Para executar a ação selecione pelo menos um registro');
@@ -45,7 +46,9 @@
 
             })
 
-            location.reload();
+            if(!--count){
+                setTimeout(function(){ location.reload(); }, 3000);
+            }
 
         }
 
