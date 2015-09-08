@@ -1,0 +1,118 @@
+<?php if($_GET['paginaId']): ?>
+	<form class="form-horizontal" action="/jornaiseditais/edit" method="post" >
+	<?php else: ?>
+		<form class="form-horizontal" action="/jornaiseditais/add" method="post" >
+		<?php endif ?>
+	    <fieldset>
+
+	        <!-- Form Name -->
+	        <legend>Cadastro de Jornais | Editais</legend>
+
+	        <a class="btn btn-default" href="/jornaiseditais" title="Novo" ><span class="glyphicon glyphicon-file" ></span></a>
+	        
+	        <!-- Text input-->
+	        <div class="form-group">
+	            <label class="col-md-4 control-label" for="textinput">ID</label>  
+	            <div class="col-md-4">
+	                <input readonly="" id="pagina-id" value="<?php echo $this->view->pagina['paginaid']; ?>" name="pagina[paginaid]"  class="form-control input-md" type="text">
+
+	            </div>
+	        </div>
+
+	        <!-- Text input-->
+	        <div class="form-group">
+	            <label class="col-md-4 control-label" for="textinput">Descrição:</label>  
+	            <div class="col-md-4">
+	                <input id="pagina-descricao" name="pagina[descricao]" value="<?php echo $this->view->pagina['descricao']; ?>"  class="form-control input-md" type="text">
+
+	            </div>
+	        </div>
+
+	        <!-- Text input-->
+	        <div class="form-group">
+	            <label class="col-md-4 control-label" for="textinput">Link:</label>  
+	            <div class="col-md-4">
+	                <input id="pagina-link" name="pagina[link]" value="<?php echo $this->view->pagina['link']; ?>"  class="form-control input-md" type="text">
+
+	            </div>
+	        </div>
+
+	        <!-- Text input-->
+	        <div class="form-group">
+	            <label class="col-md-4 control-label" for="textinput">Refresh:</label>  
+	            <div class="col-md-4">
+	                <input id="pagina-refresh" name="pagina[reload]"  value="<?php echo $this->view->pagina['reload']; ?>" class="form-control input-md" type="text">
+
+	            </div>
+	        </div>
+	        
+	        <!-- Text input-->
+	        <div class="form-group">
+	            <label class="col-md-4 control-label" for="textinput">Busca:</label>  
+	            <div class="col-md-4">
+	                <input id="pagina-busca" name="pagina[busca]" value="<?php echo $this->view->pagina['busca']; ?>"  class="form-control input-md" type="text">
+
+	            </div>
+	        </div>
+
+	        <!-- Multiple Checkboxes -->
+	            <div class="form-group">
+	                <label class="col-md-4 control-label" for="ativo">Ativo</label>
+	                <div class="col-md-4">
+	                    <div class="checkbox">
+	                        <label for="ativo">
+	                            <input name="pagina[ativo]" id="ativo" <?php if($this->view->pagina['ativo'] == 't'){ echo 'checked'; } ?>  value="t" type="checkbox">
+	                        </label>
+	                    </div>
+	                </div>
+	            </div>
+	        
+	        <!-- Button -->
+	        <div class="form-group">
+	            <label class="col-md-4 control-label" for=""></label>
+	            <div class="col-md-4">
+	                <button id="" name="" class="btn btn-success pull-right ">Salvar</button>
+	            </div>
+	        </div>
+
+	        <!-- Hiddens -->    
+	        <input type="hidden" name="pagina[tipo]" value="JE" />
+	        
+	        
+	    </fieldset>
+	</form>
+
+	<table class="table">
+	    <thead>
+	        <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Link</th>
+                <!--<th>Refresh</th>-->
+                <th>Ativo</th>
+                <th>Ações</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <?php 
+	        if(!empty($this->view->paginas))
+	            foreach($this->view->paginas as $key => $pagina): 
+	           	?>
+	            <tr>
+	                <td><?php echo $pagina['paginaid']; ?></td>
+	                <td><?php echo $pagina['descricao']; ?></td>
+	                <td><?php echo $pagina['link']; ?></td>
+	                <td><?php 
+	                        if($pagina['ativo'] == '1'){
+	                            echo 'Ativo';
+	                        }else{
+	                            echo 'Inativo';
+	                        }?></td>
+	                <td colspan="2">
+	                    <a class="btn btn-default btn-lg" href="/jornaiseditais?paginaId=<?php echo $pagina['paginaid']; ?>" ><span class="glyphicon glyphicon-pencil" ></span></a>
+	                </td>
+	            </tr>
+	            <?php endforeach ?>
+	    </tbody>
+	    
+	</table>
