@@ -1,0 +1,48 @@
+<legend>Relatório - Log de Acesso</legend>
+
+<form class="form-inline" method="post" action="#">
+    <fieldset>
+        <legend><span class="glyphicon glyphicon-filter" ></span> Filtro</legend>
+        <div class="form-group">
+            <label for="notificacoes-data">Data Inicial: </label>
+            <input type="data" class="form-control dateInput" id="dtInicial" name="dtInicial" placeholder="__/__/____" value="<?php echo $_POST[dtInicial] ?>">
+        </div>
+        <div class="form-group">
+            <label for="notificacoes-data">Data Final: </label>
+            <input type="data" class="form-control dateInput" id="dtFinal" name="dtFinal" placeholder="__/__/____" value="<?php echo $_POST[dtFinal] ?>">
+        </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh" ></span></button>
+    </fieldset>
+</form>
+
+<hr />
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Tipo Usuário</th>
+			<th>Entrada/Saída</th>
+			<th>Data/Hora</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+			/*
+			* valida se foi preenchido algo no formulario
+			*/
+			if($this->view->dados):
+				foreach ($this->view->dados as $key):
+		?>
+				<tr>
+					<td><?php echo $key[nome]?></td>
+					<td><?php echo $key[tipousuario]?></td>
+					<td><?php echo $key[tipo]?></td>
+					<td><?php echo date('d/m/Y H:i:s', strtotime($key[data])) ?></td>
+				</tr>
+		<?php
+				endforeach;
+			endif;
+		?>
+	</tbody>
+</table>
