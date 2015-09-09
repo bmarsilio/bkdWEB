@@ -9,7 +9,7 @@ class Pagina extends Action {
 
     public function cadpagina() {
         $pagina = Container::getClass('Pagina');
-        $this->view->paginas = $pagina->listarPaginas();
+        $this->view->paginas = $pagina->listarPaginas();	
 
         if ($_GET['paginaId']) {
             $paginaSelecionada = $pagina->buscarPorId($_GET['paginaId']);
