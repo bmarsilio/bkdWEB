@@ -54,9 +54,14 @@ class Gerenciador extends Action {
     public function cmdGerenciador(){
 
         try{
-
-            $cmd = 'start /B php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas.txt &';
-            pclose(popen($cmd,'r'));
+	    
+	    if (substr(php_uname(), 0, 7) == "Windows"){
+                $cmd = 'start /B php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas.txt &';
+                pclose(popen($cmd,'r'));
+	    }else{
+		$cmd = 'php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas.txt &';
+		exec($cmd);
+	    }
 
         }catch(\PDOException $e){
             echo 'O Gerenciador Parou '.__DIR__;

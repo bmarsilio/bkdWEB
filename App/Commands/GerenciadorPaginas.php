@@ -4,10 +4,10 @@ session_start();
 try{
 
     ignore_user_abort(true);
-    set_time_limit(26000);
+    set_time_limit(0);
 
-    require (__DIR__.'/../../Vendor/SON/Db/Table.php');
-    require (__DIR__.'/../../Vendor/SON/Di/Container.php');
+    require (__DIR__.'/../../vendor/SON/Db/Table.php');
+    require (__DIR__.'/../../vendor/SON/Di/Container.php');
     require (__DIR__.'/../business.php');
     require (__DIR__.'/../Models/Pagina.php');
     require (__DIR__.'/../Models/Notificacao.php');
@@ -20,20 +20,26 @@ try{
 
     $paginaModel = new App\Models\Pagina($db);
 
+    while(true){
 
-    $paginas = $paginaModel->listarPaginasAutorizadas();
+    	$paginas = $paginaModel->listarPaginasAutorizadas();
 
-    foreach ($paginas as $pagina) {
-        sleep(0.5);
-        if ($pagina->getCountReload() == $pagina->getReload()) {
-            $html = $curl->lerHTML($pagina->getLink());
-            $pagina->gerenciarAlteracoes($html);
-            $pagina->setCountReload(0);
-        } else {
-            $pagina->setCountReload($pagina->getCountReload() + 1);
-        }
+	foreach ($paginas as $pagina) {
+        	sleep(0.5);
+        	if ($pagina->getCountReload() == $pagina->getReload()) {
+            		$html = $curl->lerHTML($pagina->getLink());
+            		$pagina->gerenciarAlteracoes($html);
+            		$pagina->setCountReload(0);
+        	} else {
+            		$pagina->setCountReload($pagina->getCountReload() + 1);
+        	}
 
-        $pagina->alterar();
+        	$pagina->alterar();
+    	}
+
+	flush();
+	sleep(1);
+
     }
 
     session_write_close();
