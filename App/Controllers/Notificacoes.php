@@ -66,7 +66,9 @@ class Notificacoes extends Action
 			$badge = 0;
 		}
 
-		echo $badge;
+        $this->notifica($badge, 'notifica_pagina');
+
+        echo $badge;
 
 	}
 
@@ -87,7 +89,25 @@ class Notificacoes extends Action
 			$badge = 0;
 		}
 
+        $this->notifica($badge, 'notifica_jornal');
+
 		echo $badge;
 	}
+
+    public function notifica($badge, $tipo)
+    {
+        if($_SESSION[$tipo] != $badge) {
+            $_SESSION[$tipo] = $badge;
+
+            if ($badge != 0) {
+                echo "
+                <script>
+                    audio = document.getElementById('audio');
+                    audio.play();
+                </script>
+            ";
+            }
+        }
+    }
 
 }

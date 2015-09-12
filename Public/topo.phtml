@@ -58,13 +58,11 @@
 	});
 
 	function atualiza(){
-		audio = document.getElementById('audio');
 		
 		$.get('/notificacao/refresh/pagina', function(resultado){
 			
 			if(resultado > 0) {
 				console.log(resultado);
-				audio.play();
 			}
 			
 			$('#badgePagina').html(resultado);
@@ -74,7 +72,6 @@
 			
 			if(resultado > 0) {
 				console.log(resultado);
-				audio.play();
 			}
 			
 			$('#badgeJornalEdital').html(resultado);
