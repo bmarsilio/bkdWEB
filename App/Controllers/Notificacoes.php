@@ -96,7 +96,7 @@ class Notificacoes extends Action
 
     public function notifica($badge, $tipo)
     {
-        if($_SESSION[$tipo] != $badge) {
+        if($_SESSION[$tipo] < $badge) {
             $_SESSION[$tipo] = $badge;
 
             if ($badge != 0) {
