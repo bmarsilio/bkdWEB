@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 try{
 
@@ -20,11 +20,16 @@ try{
 
     $paginaModel = new App\Models\Pagina($db);
 
+    echo '--> '.date('d-m-Y').' - '.date('h:i:s')." Iniciando Gerenciador \n <br />";
+
     while(true){
 
     	$paginas = $paginaModel->listarPaginasAutorizadas();
 
-	foreach ($paginas as $pagina) {
+		foreach ($paginas as $pagina) {
+
+			echo '--> '.date('d-m-Y').' - '.date('h:i:s').' Verificando Página '. $pagina->getPaginaId() .' | '. $pagina->getDescricao() ." \n <br />";
+
         	sleep(0.5);
         	if ($pagina->getCountReload() == $pagina->getReload()) {
             		$html = $curl->lerHTML($pagina->getLink());
@@ -37,19 +42,18 @@ try{
         	$pagina->alterar();
     	}
 
-	flush();
-	sleep(1);
+		flush();
+		sleep(1);
 
     }
 
-    session_write_close();
 
 
 }catch (\PDOException $e) {
-    echo 'Erro no Gerênciador:  '.__DIR__;
-    error_log('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()."\n", 3, __DIR__.'\error_'.date('d-m-Y').'.log');
+    echo 'Erro no Gerênciador:  ';
+    echo ('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()." <br /> \n");
 } catch (\Exception $e) {
     echo 'Erro no Gerenciador';
-    error_log('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()."\n", 3, __DIR__.'\error_'.date('d-m-Y').'.log');
+    echo ('Erro: '. date('d-m-Y') .' - '. date('h:i:s') .' -> '.$e->getMessage()." <br /> \n");
 }
 

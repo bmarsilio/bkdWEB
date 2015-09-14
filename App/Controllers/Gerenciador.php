@@ -56,11 +56,16 @@ class Gerenciador extends Action {
         try{
 	    
 	    if (substr(php_uname(), 0, 7) == "Windows"){
-                $cmd = 'start /B php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas.txt &';
-                pclose(popen($cmd,'r'));
+            $cmd = 'start /B php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas.txt &';
+            pclose(popen($cmd,'r'));
 	    }else{
-		$cmd = 'php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas.txt &';
-		exec($cmd);
+
+            $cmd = 'killall php';
+            shell_exec($cmd);
+
+    		$cmd = 'php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas-'. date('d-m-Y') .'.txt &';
+    		shell_exec($cmd);
+
 	    }
 
         }catch(\PDOException $e){
