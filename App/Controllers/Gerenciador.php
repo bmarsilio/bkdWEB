@@ -56,7 +56,7 @@ class Gerenciador extends Action {
         try{
 	    
 	    if (substr(php_uname(), 0, 7) == "Windows"){
-            $cmd = 'start /B php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas.txt &';
+            $cmd = 'start /B php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas-'. date('d-m-Y') .'.txt &';
             pclose(popen($cmd,'r'));
 	    }else{
 
