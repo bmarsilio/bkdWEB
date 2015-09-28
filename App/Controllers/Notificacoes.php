@@ -54,10 +54,13 @@ class Notificacoes extends Action
 		$data = date('d-m-Y');
 		
 		$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','P');
-		
-		foreach ($OBbadgePagina as $key) {
-			$badge = $key[badge];
+
+		if(is_array($OBbadgePagina)) {
+			foreach ($OBbadgePagina as $key) {
+				$badge = $key[badge];
+			}
 		}
+
 
 		/*
 		* caso nao tenha notificacao, mostra '0' ao inves de nada
@@ -77,10 +80,13 @@ class Notificacoes extends Action
 		$data = date('d-m-Y');
 		
 		$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','JE');
-		
-		foreach ($OBbadgePagina as $key) {
-			$badge = $key[badge];
+
+		if(is_array($OBbadgePagina)){
+			foreach ($OBbadgePagina as $key) {
+				$badge = $key[badge];
+			}
 		}
+
 
 		/*
 		* caso nao tenha notificacao, mostra '0' ao inves de nada
