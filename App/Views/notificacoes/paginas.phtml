@@ -1,11 +1,16 @@
 <?php
-	foreach ($this->view->badgeNaoVistas as $notificacao){
-		$badgeNotificado = $notificacao[badge];
-	}
+    if(is_array($this->view->badgeNaoVistas)){
+        foreach ($this->view->badgeNaoVistas as $notificacao){
+            $badgeNotificado = $notificacao[badge];
+        }
+    }
+	if(is_array($this->view->badgeVistas)){
+        foreach ($this->view->badgeVistas as $notificacao){
+            $badgeAcessado = $notificacao[badge];
+        }
+    }
 
-	foreach ($this->view->badgeVistas as $notificacao){
-		$badgeAcessado = $notificacao[badge];
-	}
+
 ?>
 <script>
 
@@ -142,21 +147,27 @@
                 </thead>
                 <tbody>
                 	<?php
-                		
-                		foreach ($this->view->notificacoesNaoVistas as $notificacao):
-                	?>
-                		<tr>
-                            <td><input type="checkbox" value="<?php echo $notificacao[notificacaoid]; ?>" /></td>
-                			<td><?php echo $notificacao[notificacaoid]?></td>
-                			<td><?php echo $notificacao[descricao]?></td>
-                			<td>
-	                			<a href="<?php echo $notificacao[link]?>" target="_blank" onclick="atualizaNotificacao(<?php echo $notificacao[notificacaoid]?>);"><?php echo $notificacao[link]?></a>
-                			</td>
-                			<td><?php echo $notificacao[palavraencontrada]?></td>
-                			<td><?php echo date('d/m/Y', strtotime($notificacao[data])); ?></td>
-                			<td><?php echo $notificacao[hora]?></td>
-                		</tr>
-					<?php endforeach ?>
+                		if(is_array($this->view->notificacoesNaoVistas)) {
+                            foreach ($this->view->notificacoesNaoVistas as $notificacao):
+
+
+                                ?>
+                                <tr>
+                                    <td><input type="checkbox" value="<?php echo $notificacao[notificacaoid]; ?>"/></td>
+                                    <td><?php echo $notificacao[notificacaoid] ?></td>
+                                    <td><?php echo $notificacao[descricao] ?></td>
+                                    <td>
+                                        <a href="<?php echo $notificacao[link] ?>" target="_blank"
+                                           onclick="atualizaNotificacao(<?php echo $notificacao[notificacaoid] ?>);"><?php echo $notificacao[link] ?></a>
+                                    </td>
+                                    <td><?php echo $notificacao[palavraencontrada] ?></td>
+                                    <td><?php echo date('d/m/Y', strtotime($notificacao[data])); ?></td>
+                                    <td><?php echo $notificacao[hora] ?></td>
+                                </tr>
+                                <?php
+                            endforeach;
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -177,20 +188,25 @@
                 </thead>
                 <tbody>
                 	<?php
-                		
-                		foreach ($this->view->notificacoesVistas as $notificacao):
-                	?>
-                		<tr>
-                			<td><?php echo $notificacao[notificacaoid]?></td>
-                			<td><?php echo $notificacao[descricao]?></td>
-                			<td><a href="<?php echo $notificacao[link]?>" target="_blank"><?php echo $notificacao[link]?></a></td>
-                			<td><?php echo $notificacao[palavraencontrada]?></td>
-                            <td><?php echo date('d/m/Y',strtotime($notificacao[data]))?></td>
-                			<td><?php echo $notificacao[hora]?></td>
-                			<td><?php echo date('d/m/Y',strtotime($notificacao[dtclick])) ?></td>
-                			<td></td>
-                		</tr>
-					<?php endforeach ?>
+                		if(is_array($this->view->notificacoesVistas)) {
+                            foreach ($this->view->notificacoesVistas as $notificacao):
+
+                                ?>
+                                <tr>
+                                    <td><?php echo $notificacao[notificacaoid] ?></td>
+                                    <td><?php echo $notificacao[descricao] ?></td>
+                                    <td><a href="<?php echo $notificacao[link] ?>"
+                                           target="_blank"><?php echo $notificacao[link] ?></a></td>
+                                    <td><?php echo $notificacao[palavraencontrada] ?></td>
+                                    <td><?php echo date('d/m/Y', strtotime($notificacao[data])) ?></td>
+                                    <td><?php echo $notificacao[hora] ?></td>
+                                    <td><?php echo date('d/m/Y', strtotime($notificacao[dtclick])) ?></td>
+                                    <td></td>
+                                </tr>
+                                <?php
+                            endforeach;
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
