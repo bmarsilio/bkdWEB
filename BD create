@@ -135,3 +135,7 @@ ALTER TABLE notificacao RENAME COLUMN datanotificacao TO data
 -------------------------------------------------------------------------------------------
 
 ALTER TABLE pagina add column countreload integer NOT NULL DEFAULT 0
+
+-------------------------------------------------------------------------------------------
+
+ALTER TABLE pagina add column filtrarHtml boolean DEFAULT true

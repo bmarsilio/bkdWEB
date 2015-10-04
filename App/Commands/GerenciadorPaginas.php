@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
 
 try{
 
@@ -32,7 +34,7 @@ try{
 
         	sleep(0.5);
         	if ($pagina->getCountReload() == $pagina->getReload()) {
-            		$html = $curl->lerHTML($pagina->getLink());
+            		$html = $curl->lerHTML($pagina->getLink(), $pagina->getFiltrarHtml());
             		$pagina->gerenciarAlteracoes($html);
             		$pagina->setCountReload(0);
         	} else {

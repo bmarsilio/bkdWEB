@@ -19,6 +19,7 @@ class Pagina extends Table {
     private $ativo;
     private $reload;
     private $countReload;
+    private $filtrarHtml;
 
     function __construct() {
         //parent::__construct($db);
@@ -114,6 +115,19 @@ class Pagina extends Table {
         return $this;
     }
 
+    public function getFiltrarHtml()
+    {
+        return $this->filtrarHtml;
+    }
+
+    public function setFiltrarHtml($filtrarHtml)
+    {
+        $this->filtrarHtml = $filtrarHtml;
+        return $this;
+    }
+
+
+
     function setPagina(array $pagina) {
         $paginaObject = Container::getClass('pagina');
 
@@ -126,7 +140,8 @@ class Pagina extends Table {
                 ->setTipo($pagina['tipo'])
                 ->setAtivo($pagina['ativo'])
                 ->setCountReload($pagina['countreload'])
-                ->setReload($pagina['reload']);
+                ->setReload($pagina['reload'])
+                ->setFiltrarHtml($pagina['filtrarhtml']);
 
         return $paginaObject;
     }
@@ -141,6 +156,7 @@ class Pagina extends Table {
         $pagina['ativo'] = $this->getAtivo();
         $pagina['countreload'] = $this->getCountReload();
         $pagina['reload'] = $this->getReload();
+        $pagina['filtrarHtml'] = $this->getFiltrarHtml();
 
         return $pagina;
     }

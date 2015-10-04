@@ -4,18 +4,19 @@ namespace App\Utils;
 
 class Curl {
 
-    public function lerHTML($url) {
+    public function lerHTML($url, $filterHtmlTags=false) {
         try {
             $ch = curl_init();
-            $timeout = 30;
+            $timeout = 120;
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 120);
             $conteudo = curl_exec($ch);
             curl_close($ch);
-
-
+            if(!$filterHtmlTags) {
+                return htmlspecialchars($conteudo, ENT_COMPAT|ENT_SUBSTITUTE);;
+            }
             return $this->strip_html_tags($conteudo);
         } catch (Exception $e) {
             error_log("Erro {$e->getMessage()} \n", 3, __DIR__ . "../errors.log");
