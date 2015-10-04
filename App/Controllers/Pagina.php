@@ -41,6 +41,10 @@ class Pagina extends Action {
             $_POST['pagina']['ativo'] = 'f';
         }
 
+        if (!$_POST['pagina']['filtrarHtml']) {
+            $_POST['pagina']['filtrarHtml'] = 'f';
+        }
+
         if ($_POST['pagina']['tipo'] == 'P') {
             header("Location: /pagina");
         } else {
@@ -56,6 +60,10 @@ class Pagina extends Action {
 
         if (!$_POST['pagina']['ativo']) {
             $_POST['pagina']['ativo'] = 'f';
+        }
+
+        if (!$_POST['pagina']['filtrarhtml']) {
+            $_POST['pagina']['filtrarhtml'] = 'f';
         }
 
         $pagina = Container::getClass('Pagina');
