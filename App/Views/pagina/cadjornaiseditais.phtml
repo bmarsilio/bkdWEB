@@ -55,6 +55,19 @@
 	            </div>
 	        </div>
 
+
+			<!-- Multiple Checkboxes -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="filtrar-html">Filtrar Tags Html?</label>
+				<div class="col-md-4">
+					<div class="checkbox">
+						<label for="ativo">
+							<input name="pagina[filtrarhtml]" id="filtrar-html" <?php if($this->view->pagina['filtrarhtml'] == 't'){ echo 'checked'; } ?>  value="t" type="checkbox">
+						</label>
+					</div>
+				</div>
+			</div>
+
 	        <!-- Multiple Checkboxes -->
 	            <div class="form-group">
 	                <label class="col-md-4 control-label" for="ativo">Ativo</label>
@@ -89,6 +102,7 @@
                 <th>Descrição</th>
                 <th>Link</th>
                 <!--<th>Refresh</th>-->
+				<th>Filtro Html</th>
                 <th>Ativo</th>
                 <th>Ações</th>
 	        </tr>
@@ -102,7 +116,14 @@
 	                <td><?php echo $pagina['paginaid']; ?></td>
 	                <td><?php echo $pagina['descricao']; ?></td>
 	                <td><?php echo $pagina['link']; ?></td>
-	                <td><?php 
+					<td><?php
+						if($pagina['filtrarhtml'] == '1'){
+							echo 'Ativo';
+						}else{
+							echo 'Inativo';
+						}?></td>
+					<td>
+						<td><?php
 	                        if($pagina['ativo'] == '1'){
 	                            echo 'Ativo';
 	                        }else{
