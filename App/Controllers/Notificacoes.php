@@ -79,10 +79,8 @@ class Notificacoes extends Action
 		
 		$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','JE');
 
-		if(is_array($OBbadgePagina)){
-			foreach ($OBbadgePagina as $key) {
-				$badge = $key[badge];
-			}
+		foreach ($OBbadgePagina as $key) {
+			$badge = $key[badge];
 		}
 
 
