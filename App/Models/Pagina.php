@@ -117,6 +117,9 @@ class Pagina extends Table {
 
     public function getFiltrarHtml()
     {
+        if(!$this->filtrarHtml){
+            $this->filtrarHtml = 'f';
+        }
         return $this->filtrarHtml;
     }
 
