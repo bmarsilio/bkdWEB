@@ -17,7 +17,7 @@ try{
 
 
     $curl = new \App\Utils\Curl();
-    $db = new \PDO("pgsql:host=192.168.33.11;dbname=bkdweb", "postgres", "123456");
+    $db = new \PDO("pgsql:host=localhost;dbname=bkdwebdev", "postgres", "123456");
 
 
     $paginaModel = new App\Models\Pagina($db);
