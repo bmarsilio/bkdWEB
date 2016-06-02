@@ -14,9 +14,12 @@ class Curl {
             curl_setopt($ch, CURLOPT_TIMEOUT, 120);
             $conteudo = curl_exec($ch);
             curl_close($ch);
-            if(!$filterHtmlTags) {
-                return htmlspecialchars($conteudo, ENT_COMPAT|ENT_SUBSTITUTE);;
+
+
+	    if($filterHtmlTags === "f") {
+                return htmlspecialchars($conteudo, ENT_COMPAT|ENT_SUBSTITUTE);
             }
+
             return $this->strip_html_tags($conteudo);
         } catch (Exception $e) {
             error_log("Erro {$e->getMessage()} \n", 3, __DIR__ . "../errors.log");
