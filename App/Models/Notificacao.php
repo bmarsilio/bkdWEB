@@ -84,18 +84,41 @@ class Notificacao extends Table {
     }
 
     function novaNotificacao(Pagina $pagina, $palavraEncontrada = null) {
-        $notificacao['paginaid'] = $pagina->getPaginaId();
-        $notificacao['data'] = date('Y-m-d');
-        $notificacao['hora'] = date('H:m:s');
-        
-        if($palavraEncontrada == null){
-            $notificacao['palavraencontrada'] = $pagina->getBusca();
-        }else{
-            $notificacao['palavraencontrada'] = $palavraEncontrada;
-        }
-        
+        if($this->checkNotificacoesVisualizadas($pagina)) {
+            $notificacao['paginaid'] = $pagina->getPaginaId();
+            $notificacao['data'] = date('Y-m-d');
+            $notificacao['hora'] = date('H:m:s');
 
-        $this->insert($notificacao);
+            if($palavraEncontrada == null){
+                $notificacao['palavraencontrada'] = $pagina->getBusca();
+            }else{
+                $notificacao['palavraencontrada'] = $palavraEncontrada;
+            }
+
+
+            $this->insert($notificacao);
+        }
+    }
+
+    public function checkNotificacoesVisualizadas(Pagina $pagina)
+    {
+        $this->connect();
+        $sql = "select
+                    count(*)
+                from
+                    notificacao
+                where
+                    data = current_date
+                    and dtClick is null
+                    and paginaId = ". $pagina->getPaginaId();
+
+        $result = $this->db->query($sql)->fetch(\PDO::FETCH_ASSOC);
+        $this->disconnect();
+        if($result['count'] > 0) {
+            return false;
+        }
+
+        return true;
     }
 
     public function buscarPorNotificacaoId($notificacaoId) {
