@@ -17,16 +17,16 @@ class Notificacoes extends Action
 		}
 		$this->view->notificacoesNaoVistas = $Notificacao->buscarPorData($data,'is null','P');
 		$this->view->notificacoesVistas = $Notificacao->buscarPorData($data,'is not null','P');
-		
+
 		$this->view->badgeNaoVistas = $Notificacao->buscarPorData($data,'is null','P');
 		$this->view->badgeVistas = $Notificacao->buscarPorData($data,'is not null','P');
-		
+
 		$this->render('paginas');
 	}
 
 	public function atualizaDtClickNotificacao(){
 		$Notificacao = Container::getClass('Notificacao');
-		$Notificacao->marcarNotificacaoComoLida($_POST[notificacao]);
+		$Notificacao->marcarNotificacaoComoLida($_POST['notificacao']);
 
 	}
 
@@ -41,7 +41,7 @@ class Notificacoes extends Action
 
 		$this->view->notificacoesNaoVistas = $Notificacao->buscarPorData($data,'is null','JE');
 		$this->view->notificacoesVistas = $Notificacao->buscarPorData($data,'is not null','JE');
-		
+
 		$this->view->badgeNaoVistas = $Notificacao->buscarPorData($data,'is null','JE');
 		$this->view->badgeVistas = $Notificacao->buscarPorData($data,'is not null','JE');
 
@@ -49,14 +49,14 @@ class Notificacoes extends Action
 	}
 
 	public function refreshPagina(){
-		
+
 		$Notificacao = Container::getClass('Notificacao');
 		$data = date('d-m-Y');
-		
+
 		$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','P');
 
 		foreach ($OBbadgePagina as $key) {
-			$badge = $key[badge];
+			$badge = $key['badge'];
 		}
 
 
@@ -76,11 +76,11 @@ class Notificacoes extends Action
 	public function refreshJornalEdital(){
 		$Notificacao = Container::getClass('Notificacao');
 		$data = date('d-m-Y');
-		
+
 		$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','JE');
 
 		foreach ($OBbadgePagina as $key) {
-			$badge = $key[badge];
+			$badge = $key['badge'];
 		}
 
 
