@@ -28,7 +28,7 @@ class Login extends Action
 			$_SESSION['nome'] = $dados['nome'];
 			$_SESSION['usuarioId'] = $dados['usuarioid'];
 			$_SESSION['login'] = $dados['login'];
-			$_SESSION['tipoUsuarioId'] = $dados['tipousuarioid'];
+			$_SESSION['tipoUsuarioId'] = $dados['tipoUsuarioId'];
 
 			//armazena valores para montar o insert do log
 			$sql["log"]["usuarioId"] = $_SESSION['usuarioId'];
