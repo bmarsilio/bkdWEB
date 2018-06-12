@@ -6,7 +6,7 @@ class business {
 
     public static function getDb() {
 
-        $db = new \PDO("pgsql:host=localhost;dbname=bkdwebdev", "postgres", "123456");
+        $db = new \PDO("mysql:host=localhost;dbname=bkdwebdev", "root", "");
         return $db;
     }
 
