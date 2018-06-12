@@ -27,15 +27,16 @@ abstract class Bootstrap
 			}
 		});
 		*/
-		
+
 		#default grava false, se encontrar a rota, troca para true
 		$return = false;
 
 		foreach ($this->routes as $key) {
 			if($url == $key['route']){
 				$class = "App\\Controllers\\".ucfirst($key['controller']);
-				$controller = new $class;
-				$controller->$key['action']();
+                $controller = new $class;
+                $action = $key['action'];
+				$controller->$action();
 
 				$return = true;
 
