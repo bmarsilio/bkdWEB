@@ -118,7 +118,7 @@ class Pagina extends Table {
     public function getFiltrarHtml()
     {
         if(!$this->filtrarHtml){
-            $this->filtrarHtml = 'f';
+            $this->filtrarHtml = 0;
         }
         return $this->filtrarHtml;
     }
@@ -200,12 +200,12 @@ class Pagina extends Table {
     public function listarPaginasAutorizadas() {
         $this->connect();
         $sql = "
-                SELECT 
-                    * 
-                FROM 
-                    pagina 
-                WHERE 
-                    ativo is true 
+                SELECT
+                    *
+                FROM
+                    pagina
+                WHERE
+                    ativo is true
                     AND countreload = (
                         SELECT
                                 min(countreload)
@@ -221,9 +221,9 @@ class Pagina extends Table {
         foreach ($paginas as $pagina) {
             $paginasObjects[] = $this->setPagina($pagina);
         }
-        
+
         $this->disconnect();
-        
+
         return $paginasObjects;
     }
 

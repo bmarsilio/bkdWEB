@@ -90,16 +90,18 @@ abstract class Table {
                                     B.tipoUsuarioId as tipoUsuarioId
                             FROM
                                     {$this->table} A
-                                    inner join tipoUsuario B on (B.tipoUsuarioId = A.tipoUsuarioId)
+                                    inner join tipousuario B on (B.tipoUsuarioId = A.tipoUsuarioId)
                             WHERE
                                     A.login = '$dados[usuario]'
                                     AND A.senha = '$senha'
                                     AND A.ativo = '1'
             ";
+
         /*
           print("<pre>".$sql."</pre>");
           die();
-         */
+        */
+
         $consulta = $this->db->prepare($sql);
         $consulta->execute();
 
