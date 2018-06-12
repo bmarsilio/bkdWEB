@@ -15,7 +15,7 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <span class="glyphicon glyphicon-pencil"></span> 
+                        <span class="glyphicon glyphicon-pencil"></span>
                         Cadastros
                         <span class="caret"></span>
                     </a>
@@ -28,7 +28,7 @@
                 <li><a href="/notificacoes-jornais-editais">Notificações Jornais | Editais <span class="badge" id="badgeJornalEdital" ></span></a></li>
                 <?php
                 	//valida se o usuario que esta logado e do tipo administrador(1) para mostrar o menu de relatorios
-                	if($_SESSION[tipoUsuarioId] == 1):
+                	if($_SESSION['tipoUsuarioId'] == 1):
                 ?>
                 		<li><a href="/relatorioLog"><span class="glyphicon glyphicon-list-alt"></span> Relatório</a></li>
                         <li><a href="/gerenciador"><span class="glyphicon glyphicon-user"></span> Iniciar Gerenciador</a></li>
@@ -58,22 +58,22 @@
 	});
 
 	function atualiza(){
-		
+
 		$.get('/notificacao/refresh/pagina', function(resultado){
-			
+
 			if(resultado > 0) {
 				console.log(resultado);
 			}
-			
+
 			$('#badgePagina').html(resultado);
 		})
 
 		$.get('/notificacao/refresh/jornaledital', function(resultado){
-			
+
 			if(resultado > 0) {
 				console.log(resultado);
 			}
-			
+
 			$('#badgeJornalEdital').html(resultado);
 		})
 
