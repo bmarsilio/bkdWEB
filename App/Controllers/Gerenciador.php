@@ -9,8 +9,8 @@ use SON\Di\Container;
 class Gerenciador extends Action {
 
     public function index() {
-        
-        if ($_SESSION[tipoUsuarioId] == 1) {
+
+        if ($_SESSION['tipoUsuarioId'] == 1) {
             $this->view->msg = "Gerenciando alterações de páginas";
             //$this->gerenciaPaginas();
             //$this->cmdGerenciador();
@@ -54,7 +54,7 @@ class Gerenciador extends Action {
     public function cmdGerenciador(){
 
         try{
-	    
+
 	    if (substr(php_uname(), 0, 7) == "Windows"){
             $cmd = 'start /B php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas-'. date('d-m-Y') .'.txt &';
             pclose(popen($cmd,'r'));

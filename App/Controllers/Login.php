@@ -25,13 +25,13 @@ class Login extends Action
 		$dataAtual = date('Y-m-d H:i:s');
 
 		if($dados){
-			$_SESSION[nome] = $dados[nome];
-			$_SESSION[usuarioId] = $dados[usuarioid];
-			$_SESSION[login] = $dados[login];
-			$_SESSION[tipoUsuarioId] = $dados[tipousuarioid];
-			
+			$_SESSION['nome'] = $dados['nome'];
+			$_SESSION['usuarioId'] = $dados['usuarioid'];
+			$_SESSION['login'] = $dados['login'];
+			$_SESSION['tipoUsuarioId'] = $dados['tipousuarioid'];
+
 			//armazena valores para montar o insert do log
-			$sql["log"]["usuarioId"] = $_SESSION[usuarioId];
+			$sql["log"]["usuarioId"] = $_SESSION['usuarioId'];
 			$sql["log"]["data"] = $dataAtual;
 			$sql["log"]["tipo"] = 'E';
 
