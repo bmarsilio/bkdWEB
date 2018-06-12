@@ -13,7 +13,7 @@ abstract class Table {
     }
 
     protected function connect() {
-        $this->db = new \PDO("pgsql:host=localhost;dbname=bkdwebdev", "postgres", "123456");
+        $this->db = new \PDO("mysql:host=localhost;dbname=bkdwebdev", "root", "");
     }
 
     protected function disconnect() {
