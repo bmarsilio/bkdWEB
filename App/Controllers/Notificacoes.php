@@ -55,9 +55,11 @@ class Notificacoes extends Action
 
 		$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','P');
 
-		foreach ($OBbadgePagina as $key) {
-			$badge = $key['badge'];
-		}
+        if($OBbadgePagina) {
+            foreach ($OBbadgePagina as $key) {
+                $badge = $key['badge'];
+            }
+        }
 
 
 		/*
@@ -79,9 +81,12 @@ class Notificacoes extends Action
 
 		$OBbadgePagina = $Notificacao->buscarPorData($data,'is null','JE');
 
-		foreach ($OBbadgePagina as $key) {
-			$badge = $key['badge'];
-		}
+        if($OBbadgePagina) {
+            foreach ($OBbadgePagina as $key) {
+                $badge = $key['badge'];
+            }
+
+        }
 
 
 		/*
