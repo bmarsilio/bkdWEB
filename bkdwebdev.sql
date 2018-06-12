@@ -16,6 +16,8 @@ CREATE TABLE `log` (
   CONSTRAINT `log_ibfk_1` FOREIGN KEY (`usuarioid`) REFERENCES `usuario` (`usuarioid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `log` (`logid`, `usuarioid`, `tipo`, `data`) VALUES
+(1,	2,	'E',	'2018-06-11 23:24:50');
 
 DROP TABLE IF EXISTS `notificacao`;
 CREATE TABLE `notificacao` (
@@ -38,12 +40,17 @@ CREATE TABLE `pagina` (
   `link` varchar(255) NOT NULL,
   `reload` varchar(255) NOT NULL,
   `busca` varchar(255) NOT NULL,
-  `htmlatual` text NOT NULL,
+  `htmlatual` text,
   `countreload` int(11) NOT NULL DEFAULT '0',
-  `filtrarHtml` tinyint(1) NOT NULL DEFAULT '1',
+  `filtrarHtml` tinyint(1) NOT NULL DEFAULT '0',
+  `ativo` tinyint(1) NOT NULL DEFAULT '0',
+  `tipo` varchar(255) NOT NULL,
   PRIMARY KEY (`paginaid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `pagina` (`paginaid`, `descricao`, `link`, `reload`, `busca`, `htmlatual`, `countreload`, `filtrarHtml`, `ativo`, `tipo`) VALUES
+(1,	'asd',	'asdd',	'1',	'asddd',	NULL,	0,	1,	1,	'P'),
+(2,	'ASD',	'ASD',	'2',	'ASD',	NULL,	0,	1,	1,	'JE');
 
 DROP TABLE IF EXISTS `tipousuario`;
 CREATE TABLE `tipousuario` (
@@ -71,4 +78,4 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`usuarioid`, `nome`, `login`, `senha`, `ativo`, `tipousuarioid`) VALUES
 (2,	'admin',	'admin',	'e10adc3949ba59abbe56e057f20f883e',	1,	1);
 
--- 2018-06-12 02:18:08
+-- 2018-06-12 02:36:42
