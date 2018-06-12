@@ -79,16 +79,16 @@ abstract class Table {
 
     public function autentica($dados) {
         $this->connect();
-        $senha = md5($dados[senha]);
+        $senha = md5($dados['senha']);
         $sql = "
-                            SELECT 
+                            SELECT
                                     A.usuarioid,
                                     A.nome,
                                     A.ativo,
                                     A.login,
                                     B.descricao as tipoUsuario,
                                     B.tipoUsuarioId as tipoUsuarioId
-                            FROM 
+                            FROM
                                     {$this->table} A
                                     inner join tipoUsuario B on (B.tipoUsuarioId = A.tipoUsuarioId)
                             WHERE

@@ -52,6 +52,8 @@ CREATE TABLE `tipousuario` (
   PRIMARY KEY (`tipousuarioid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `tipousuario` (`tipousuarioid`, `descricao`) VALUES
+(1,	'admin');
 
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
@@ -66,5 +68,7 @@ CREATE TABLE `usuario` (
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`tipousuarioid`) REFERENCES `tipousuario` (`tipousuarioid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `usuario` (`usuarioid`, `nome`, `login`, `senha`, `ativo`, `tipousuarioid`) VALUES
+(2,	'admin',	'admin',	'e10adc3949ba59abbe56e057f20f883e',	1,	1);
 
--- 2018-06-12 02:01:32
+-- 2018-06-12 02:18:08
