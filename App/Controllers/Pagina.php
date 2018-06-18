@@ -9,7 +9,7 @@ class Pagina extends Action {
 
     public function cadpagina() {
         $pagina = Container::getClass('Pagina');
-        $this->view->paginas = $pagina->listarPaginas();	
+        $this->view->paginas = $pagina->listarPaginas();
 
         if ($_GET['paginaId']) {
             $paginaSelecionada = $pagina->buscarPorId($_GET['paginaId']);
@@ -38,11 +38,11 @@ class Pagina extends Action {
         $pagina->insert($_POST['pagina']);
 
         if (!$_POST['pagina']['ativo']) {
-            $_POST['pagina']['ativo'] = 'f';
+            $_POST['pagina']['ativo'] = '0';
         }
 
         if (!$_POST['pagina']['filtrarHtml']) {
-            $_POST['pagina']['filtrarHtml'] = 'f';
+            $_POST['pagina']['filtrarHtml'] = '0';
         }
 
         if ($_POST['pagina']['tipo'] == 'P') {
@@ -59,11 +59,11 @@ class Pagina extends Action {
         unset($_POST['pagina']['paginaid']);
 
         if (!$_POST['pagina']['ativo']) {
-            $_POST['pagina']['ativo'] = 'f';
+            $_POST['pagina']['ativo'] = '0';
         }
 
-        if (!$_POST['pagina']['filtrarhtml']) {
-            $_POST['pagina']['filtrarhtml'] = 'f';
+        if (!$_POST['pagina']['filtrarHtml']) {
+            $_POST['pagina']['filtrarHtml'] = '0';
         }
 
         $pagina = Container::getClass('Pagina');

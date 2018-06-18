@@ -61,9 +61,9 @@ class Gerenciador extends Action {
 	    }else{
 
             $cmd = 'killall php';
-            shell_exec($cmd);
+            //shell_exec($cmd);
 
-    		$cmd = 'php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas-'. date('d-m-Y') .'.txt &';
+            $cmd = 'php '.__DIR__.'/../Commands/GerenciadorPaginas.php > BufferGerenciadorPaginas-'. date('d-m-Y') .'.txt &';
     		shell_exec($cmd);
 
 	    }

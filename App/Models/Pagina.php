@@ -144,7 +144,7 @@ class Pagina extends Table {
                 ->setAtivo($pagina['ativo'])
                 ->setCountReload($pagina['countreload'])
                 ->setReload($pagina['reload'])
-                ->setFiltrarHtml($pagina['filtrarhtml']);
+                ->setFiltrarHtml(array_key_exists('filtrarhtml', $pagina) ? $pagina['filtrarhtml'] : false);
 
         return $paginaObject;
     }
